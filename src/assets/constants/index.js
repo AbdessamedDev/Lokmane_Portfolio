@@ -1,5 +1,14 @@
 import dirasatiCard from "/images/projects/dirasati.png";
 
+import AdobeXD from "/images/skills/AdobeXD.png";
+import Coding from "/images/skills/Coding.png";
+import DesignThinking from "/images/skills/DesignThinking.png";
+import Figma from "/images/skills/Figma.png";
+import Prototyping from "/images/skills/Prototyping.png";
+import Researche from "/images/skills/Researche.png";
+import Ui_ux from "/images/skills/Ui_ux.png";
+import Wireframing from "/images/skills/Wireframing.png";
+
 export const navLinks = [
     {
         id: "about",
@@ -149,5 +158,120 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+    },
+]
+
+export const skillsInfos = [
+    {
+       sizes: {
+            fontSize: "26px",
+            bgSize: "252px"
+        },
+       infos:  {
+            text: "UI UX",
+            bg: Ui_ux
+        },
+        dimensions: {
+           left: "0px",
+           top: "32px"
+        }
+    },
+    {
+       sizes: {
+            fontSize: "21px",
+            bgSize: "200px"
+        },
+        infos: {
+            text: "Prototyping",
+            bg: Prototyping
+        },
+        dimensions: {
+            left: "383px",
+            top: "68px"
+        }
+    },
+    {
+        sizes: {
+            fontSize: "26px",
+            bgSize: "252px"
+        },
+        infos: {
+            text: "Figma",
+            bg: Figma
+        },
+        dimensions: {
+            left: "714px",
+            top: "3px"
+        }
+    },
+    {
+        sizes: {
+            fontSize: "21px",
+            bgSize: "200px"
+        },
+        infos: {
+            text: "Wireframing",
+            bg: Wireframing
+        },
+        dimensions: {
+            left: "1097px",
+            top: "29px"
+        }
+    },
+    {
+        sizes: {
+            fontSize: "26px",
+            bgSize: "252px"
+        },
+        infos: {
+            text: "Adobe XD",
+            bg: AdobeXD
+        },
+        dimensions: {
+            left: "1428px",
+            top: "5px"
+        }
+    },
+    {
+        sizes: {
+            fontSize: "21px",
+            bgSize: "200px"
+        },
+        infos: {
+            text: "Design Thinking",
+            bg: DesignThinking
+        },
+        dimensions: {
+            left: "191px",
+            top: "374px"
+        }
+    },
+    {
+        sizes: {
+            fontSize: "26px",
+            bgSize: "252px"
+        },
+        infos: {
+            text: "Coding",
+            bg: Coding
+        },
+        dimensions: {
+            left: "714px",
+            top: "411px"
+        }
+    },
+    {
+        sizes: {
+            fontSize: "21px",
+            bgSize: "200px"
+        },
+        infos: {
+            text: "User Research",
+            bg: Researche
+        },
+        dimensions: {
+            left: "1289px",
+            top: "374px"
+        }
     },
 ]

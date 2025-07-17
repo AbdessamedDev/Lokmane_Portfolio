@@ -6,6 +6,7 @@ import Hero from "./components/Hero.jsx";
 import Animate from "./components/Animate.jsx";
 import Biography from "./components/Biography.jsx";
 import Projects from "./components/Projects/Projects.jsx";
+import SkillsSection from "./components/skills/SkillsSection.jsx";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -17,6 +18,7 @@ const App = () => {
         <Animate/>
         <Biography/>
         <Projects/>
+        <SkillsSection/>
     </main>
   );
 };

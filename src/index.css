@@ -224,7 +224,7 @@ body {
 
   /* Projects Section - Exact Match to Images */
   .projects-wrapper {
-    @apply container mx-auto px-5;
+    @apply w-fit mx-auto px-5;
   }
 
   .projects-three-columns {
@@ -314,6 +314,14 @@ body {
   @media (max-width: 640px) {
     .projects-three-columns {
       @apply grid-cols-1 gap-6;
+    }
+  }
+
+  #skills {
+    @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+    .planets-container {
+      @apply relative mx-auto;
     }
   }
 }
