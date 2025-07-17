@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Universo Stencil Demo";
+  src: url("/fonts/FSP DEMO - Universo Stencil.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Universo Bold Demo";
+  src: url("/fonts/FSP DEMO - Universo Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Universo Black Demo";
+  src: url("/fonts/FSP DEMO - Universo Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'UniversoDemoRegular';
+  src: url('/fonts/Fontspring-DEMO-universo-regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'UniversoDemoLight';
+  src: url('/fonts/Fontspring-DEMO-universo-light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'UniversoDemoThin';
+  src: url('/fonts/Fontspring-DEMO-universo-thin.otf') format('opentype');
+}
+
+@theme {
+  --font-fsp-stencil: "Universo Stencil Demo", sans-serif;
+  --font-fsp-bold: "Universo Bold Demo", sans-serif;
+  --font-fsp-black: "Universo Black Demo", sans-serif;
+  --font-fsp-regular: "UniversoDemoRegular";
+  --font-fsp-light: "UniversoDemoLight";
+  --font-fsp-thin: "UniversoDemoThin";
+  --color-violet-primary: #633eb7;
+  --color-white-secondary: #fefefe;
+  --color-blue-night: #0A101E;
+}
+
+html,
+body {
+  width: 100%;
+  background-color: #05080f;
+  color: white;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility col-center {
+  @apply flex flex-col justify-center items-center;
+}
+
+@utility abs-center {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+@utility borderr {
+  @apply border border-amber-950;
+}
+
+@utility text-shadow-white {
+  @apply text-shadow-[0_0_10px_#fff,_0_0_20px_#fff,_0_0_30px_#fff] text-white font-bold brightness-110 transition-all duration-300;
+}
+
+@utility shine-text {
+  @apply relative text-white transition-all duration-300;
+}
+
+/* Section Title Utility Class */
+@utility section-title {
+  @apply font-fsp-stencil text-5xl text-white w-fit mx-auto text-center mb-[126px];
+}
+
+/* Button Components Utilities */
+@utility btn-purple {
+  @apply w-fit px-7 py-4 rounded-2xl text-[28px] font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
+}
+
+ .btn-purple:hover {
+  @apply bg-gradient-to-r from-violet-primary to-violet-primary/90 border-white/30;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+ .btn-purple:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+@utility btn-white {
+  @apply w-fit px-6 py-3 rounded-2xl text-2xl font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-transparent border-[3px] border-white text-white;
+}
+
+  .btn-white:hover {
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+ .btn-white:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+@layer components {
+  main {
+    @apply w-full overflow-x-hidden;
+  }
+
+  nav {
+    @apply fixed z-50 w-full;
+
+    div {
+      @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
+    }
+
+    a {
+      @apply cursor-pointer text-nowrap md:text-xl md:font-medium text-sm font-fsp-stencil transition-all duration-300;
+    }
+
+    a.nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    a.nav-link::before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    a.nav-link:hover::before {
+      width: 100%;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    a.active {
+      color: #fff;
+    }
+
+    a.nav-link.active::before {
+      width: 100%;
+      height: 2px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+
+    ul {
+      @apply flex-center lg:gap-12 gap-7;
+    }
+  }
+
+  .stars {
+    @apply inset-0 size-full bg-[url("/images/global/Stars.svg")];
+  }
+
+  #hero {
+    @apply relative z-10 w-full min-h-dvh;
+
+    .content {
+      @apply container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-30 top-auto md:top-[25vh] px-5 text-center borderr;
+
+      p:first-of-type {
+        @apply font-fsp-bold text-[32px] font-normal;
+      }
+
+      h1 {
+        @apply font-fsp-stencil font-medium text-[165px] mt-2 transition-all duration-100;
+      }
+
+      h1:hover {
+        color: #fff;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px
+        rgba(255, 255, 255, 0.3);
+        transition: text-shadow 0.3s ease;
+      }
+
+      p:last-of-type {
+        @apply font-medium font-fsp-black w-[1230px] text-center text-[28px] mx-auto mt-2;
+      }
+
+      div {
+        @apply mt-18 mx-auto w-fit;
+      }
+    }
+  }
+
+  #about {
+    @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+    h2 {
+      @apply section-title md:top-[10vh] relative;
+    }
+
+    div {
+      @apply absolute z-11 top-1/2 -translate-y-[40%] left-[10vw] w-[967px] borderr;
+
+      p {
+        @apply font-fsp-bold text-2xl font-normal leading-11 mb-8;
+      }
+    }
+
+    img {
+      @apply absolute right-[70vw] borderr;
+    }
+  }
+
+  #projects {
+    @apply relative z-10 w-full min-h-dvh py-20;
+  }
+
+  /* Projects Section - Exact Match to Images */
+  .projects-wrapper {
+    @apply container mx-auto px-5;
+  }
+
+  .projects-three-columns {
+    @apply grid grid-cols-3 gap-[120px];
+    width: 1680px;
+    max-width: 100%;
+    height: 514px;
+    margin: 0 auto;
+    perspective:  1000px;
+  }
+
+  .project-card-image {
+    @apply md:w-[480px] md:h-[514px] rounded-[20px] transition-all duration-300 hover:scale-102 overflow-hidden;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform-origin: center center;
+    will-change: transform, opacity;
+  }
+
+  .project-card-image:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .project-mockup-section {
+    @apply w-full h-[262px] overflow-hidden;
+
+    img {
+      @apply w-full h-full;
+    }
+  }
+
+  .project-content-section {
+    @apply text-center h-full bg-blue-night py-6;
+    color: white;
+  }
+
+  .project-tags-section {
+    @apply flex justify-center gap-6 mb-6 flex-wrap;
+  }
+
+  .project-tag-pill {
+    @apply px-[3px] py-3 md:py-2 md:px-[21.5px] border border-white text-white md:text-xs rounded-2xl font-normal font-fsp-bold;
+    backdrop-filter: blur(10px);
+  }
+
+  .project-card-title {
+    @apply font-fsp-stencil md:text-[22px] text-white md:mb-[6px] font-medium;
+  }
+
+  .project-card-desc {
+    @apply font-fsp-light font-light text-white md:text-base leading-[120%] mb-6 tracking-wider;
+  }
+
+  .learn-more-button {
+    @apply bg-violet-primary text-white md:px-5 md:py-[10px] rounded-lg font-fsp-stencil font-medium md:text-base transition-all duration-200 hover:bg-violet-primary/90 hover:scale-[1.01] cursor-pointer;
+    box-shadow: 0 4px 15px rgba(99, 62, 183, 0.4);
+  }
+
+  .learn-more-button:hover {
+    box-shadow: 0 6px 20px rgba(99, 62, 183, 0.6);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+
+  .see-more-wrapper {
+    @apply flex justify-center mt-20;
+  }
+
+  .see-more-button {
+    @apply w-fit bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-fsp-stencil font-medium text-2xl transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105;
+  }
+
+  .see-more-button:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+
+  .see-more-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .projects-three-columns {
+      @apply grid-cols-2 gap-6;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects-three-columns {
+      @apply grid-cols-1 gap-6;
+    }
+  }
+}
