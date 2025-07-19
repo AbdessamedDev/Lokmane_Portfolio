@@ -323,5 +323,25 @@ body {
     .planets-container {
       @apply relative mx-auto;
     }
+
+   .other-skills-container {
+     @apply mt-[5vw];
+
+     .other-skills-title {
+       @apply text-center font-fsp-stencil font-medium text-[40px] mb-20;
+     }
+
+     .other-skills {
+       @apply w-[1680px] grid [grid-template-columns:repeat(auto-fill,minmax(480px,1fr))] [grid-template-rows:auto] gap-[120px];
+     }
+   }
+  }
+
+  #testimonials {
+    @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+    h2 {
+      @apply md:mt-[15vh];
+    }
   }
 }

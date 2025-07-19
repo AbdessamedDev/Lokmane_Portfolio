@@ -1,7 +1,9 @@
 "use client"
 
-import { skillsInfos } from "../../assets/constants/index.js"
+import { skillsInfos, otherSkills } from "../../assets/constants/index.js"
 import SkillPlanet from "./SkillPlanet.jsx"
+import SkillProgress from "./SkillProgress.jsx";
+import WhiteButton from "../buttons/WhiteButton.jsx";
 
 const SkillsSection = () => {
     return (
@@ -26,6 +28,30 @@ const SkillsSection = () => {
                         index={index}
                     />
                 ))}
+            </div>
+
+            <div className="other-skills-container borderr"
+                 style={{
+                     minWidth: "1680px",
+                 }}>
+                <h1 className="other-skills-title">Other Skills</h1>
+                <div className="other-skills mx-auto">
+                    {
+                        otherSkills.map((skill, index) => (
+                            <SkillProgress
+                                key={`otherSkill-${index}`}
+                                skillName={skill.skillName}
+                                skillPercentage={skill.skillPercentage}
+                                index={index}
+                            />
+                        ))
+                    }
+                </div>
+                <div className="w-full flex-center mt-20">
+                    <WhiteButton>
+                        See more
+                    </WhiteButton>
+                </div>
             </div>
 
             {/* Add global CSS for floating animations */}

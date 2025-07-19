@@ -7,6 +7,7 @@ import Animate from "./components/Animate.jsx";
 import Biography from "./components/Biography.jsx";
 import Projects from "./components/Projects/Projects.jsx";
 import SkillsSection from "./components/skills/SkillsSection.jsx";
+import TestimonialsSection from "./components/testimonials/TestimonialsSection.jsx";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -19,6 +20,7 @@ const App = () => {
         <Biography/>
         <Projects/>
         <SkillsSection/>
+        <TestimonialsSection/>
     </main>
   );
 };

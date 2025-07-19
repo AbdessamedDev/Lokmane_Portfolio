@@ -275,3 +275,39 @@ export const skillsInfos = [
         }
     },
 ]
+
+export const otherSkills = [
+    {
+        skillName: "Laravel",
+        skillPercentage: "90"
+    },
+    {
+        skillName: "JavaScript",
+        skillPercentage: "70"
+    },
+    {
+        skillName: "Java",
+        skillPercentage: "85"
+    },
+    {
+        skillName: "Docker",
+        skillPercentage: "80"
+    },
+    {
+        skillName: "Flutter",
+        skillPercentage: "9"
+    },
+    {
+        skillName: "Php",
+        skillPercentage: "80"
+    },{
+        skillName: "SQL",
+        skillPercentage: "63"
+    },{
+        skillName: "Databases",
+        skillPercentage: "77"
+    },{
+        skillName: "Planification",
+        skillPercentage: "38"
+    }
+]
