@@ -9,6 +9,10 @@ import Researche from "/images/skills/Researche.png";
 import Ui_ux from "/images/skills/Ui_ux.png";
 import Wireframing from "/images/skills/Wireframing.png";
 
+// here you can import testimonial images
+import testimonialImage from "/images/testimonials/testimonial_image.png";
+
+
 export const navLinks = [
     {
         id: "about",
@@ -300,14 +304,76 @@ export const otherSkills = [
     {
         skillName: "Php",
         skillPercentage: "80"
-    },{
+    },
+    {
         skillName: "SQL",
         skillPercentage: "63"
-    },{
+    },
+    {
         skillName: "Databases",
         skillPercentage: "77"
-    },{
+    },
+    {
         skillName: "Planification",
         skillPercentage: "38"
     }
+]
+
+export const testimonials = [
+    {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "5",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "5",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "5",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "5",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "3",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "2",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "1",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "4",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    }, {
+        image: testimonialImage,
+        fullName: "Bouzid Amine",
+        job: "Front-end Developer",
+        rating: "5",
+        description: "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! "
+    },
+
 ]
