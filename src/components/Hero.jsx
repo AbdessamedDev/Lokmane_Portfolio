@@ -90,8 +90,12 @@ const Hero = () => {
                         Crafting seamless experiences that connect people with <br /> products in meaningful ways.
                     </p>
                     <div className="flex items-center gap-12">
-                        <PurpleButton>View My Work</PurpleButton>
-                        <WhiteButton>Get in Touch</WhiteButton>
+                        <a href="#projects">
+                            <PurpleButton className="btn-purple">View My Work</PurpleButton>
+                        </a>
+                        <a href="#contact">
+                            <WhiteButton className="md:w-fit md:px-7 md:py-4 md:text-[28px] font-fsp-stencil font-medium md:rounded-2xl border-[3px] cursor-pointer text-center transition-all duration-300 bg-transparent border-white text-white hover:border-white/90 hover:shadow-[0_0_10px_rgba(255,255,255,0.7),inset_0_0_10px_rgba(255,255,255,0.5)] hover:[text-shadow:0_0_10px_rgba(255,255,255,0.8),_0_0_20px_rgba(255,255,255,0.8),_0_0_30px_rgba(255,255,255,0.6)]">Get in Touch</WhiteButton>
+                        </a>
                     </div>
                 </div>
             </section>

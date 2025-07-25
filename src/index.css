@@ -59,6 +59,8 @@
   --color-violet-secondary: #392760 ;
   --color-white-secondary: #fefefe;
   --color-blue-night: #0A101E;
+  --color-gray-input: #272F47;
+  --color-gray-input-border: #E0E0E033;
 }
 
 html,
@@ -104,9 +106,12 @@ body {
   @apply w-fit px-7 py-4 rounded-2xl text-[28px] font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
 }
 
- .btn-purple:hover {
-  @apply bg-gradient-to-r from-violet-primary to-violet-primary/90 border-white/30;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+/* In your CSS file */
+.btn-purple:hover {
+    box-shadow:
+            0 1px 28px rgba(129, 91, 216, 0.2),
+            0 2px 28px rgba(129, 91, 216, 0.25);
+    transition: box-shadow 0.3s ease;
 }
 
  .btn-purple:disabled {

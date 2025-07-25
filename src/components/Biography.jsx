@@ -178,7 +178,7 @@ const Biography = () => {
                     understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
                     design all focused on creating experiences that truly work for users.
                 </p>
-                <PurpleButton onClick={downloadResume}>Download resume</PurpleButton>
+                <PurpleButton onClick={downloadResume} className={"btn-purple"}>Download resume</PurpleButton>
             </div>
             <img
                 ref={astroRef}

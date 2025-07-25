@@ -1,0 +1,54 @@
+/* Custom styles for the contact section */
+
+/* Custom input styles */
+.custom-input {
+    --placeholder-opacity: 1;
+    caret-color: rgb(139, 92, 246);
+}
+
+.custom-input::placeholder {
+    color: #64748b;
+    opacity: var(--placeholder-opacity);
+    transition: opacity 0.3s ease;
+}
+
+.custom-input:focus::placeholder {
+    opacity: 0;
+}
+
+/* Contact icon glow effect */
+.contact-icon {
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+    transition: filter 0.3s ease;
+}
+
+/* Message box hover effect */
+.message-box-hover {
+    transition: all 0.3s ease;
+}
+
+.message-box-hover:hover {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Send button enhanced styles */
+.send-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.send-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.send-button:hover::before {
+    left: 100%;
+}
