@@ -87,7 +87,7 @@ const MessageBox = () => {
         setResult("Sending...")
 
         const formDataToSend = new FormData()
-        formDataToSend.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY") // Replace with your actual key
+        formDataToSend.append("access_key", "55be1cbf-cbd7-468f-9956-5e1d4c23b7f2") // Replace with your actual key
         formDataToSend.append("name", formData.name)
         formDataToSend.append("email", formData.email)
         formDataToSend.append("message", formData.message)

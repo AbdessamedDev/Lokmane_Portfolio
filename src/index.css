@@ -103,7 +103,7 @@ body {
 
 /* Button Components Utilities */
 @utility btn-purple {
-  @apply w-fit px-7 py-4 rounded-2xl text-[28px] font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
+  @apply w-fit px-[52px] py-2 md:px-7 md:py-4 rounded-lg md:rounded-2xl text-sm md:text-[28px] font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
 }
 
 /* In your CSS file */
@@ -145,7 +145,7 @@ body {
     }
 
     a {
-      @apply cursor-pointer text-nowrap md:text-xl md:font-medium text-sm font-fsp-stencil transition-all duration-300;
+      @apply cursor-pointer text-nowrap md:text-xl md:font-medium text-[2.57vw] font-fsp-stencil transition-all duration-300;
     }
 
     a.nav-link {
@@ -195,14 +195,14 @@ body {
     @apply relative z-10 w-full min-h-dvh;
 
     .content {
-      @apply container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-30 top-auto md:top-[25vh] px-5 text-center borderr;
+      @apply container mx-auto relative left-1/2 -translate-x-1/2 lg:bottom-30 top-[60vw] md:top-[25vh] px-5 text-center borderr;
 
       p:first-of-type {
-        @apply font-fsp-bold text-[32px] font-normal;
+        @apply font-fsp-bold text-sm md:text-[32px] font-normal;
       }
 
       h1 {
-        @apply font-fsp-stencil font-medium text-[165px] mt-2 transition-all duration-100;
+        @apply font-fsp-stencil font-medium text-5xl leading-[120%] md:text-[165px] mt-2 transition-all duration-100;
       }
 
       h1:hover {
@@ -213,11 +213,11 @@ body {
       }
 
       p:last-of-type {
-        @apply font-medium font-fsp-black w-[1230px] text-center text-[28px] mx-auto mt-2;
+        @apply font-medium font-fsp-black w-[91.8vw] md:w-[1230px] text-justify md:text-center text-[10px] md:text-[28px] mx-auto mt-8 leading-5 tracking-widest;
       }
 
       div {
-        @apply mt-18 mx-auto w-fit;
+        @apply mt-6 md:mt-18 mx-auto w-fit;
       }
     }
   }

@@ -119,7 +119,7 @@ const Navbar = () => {
   return (
       <nav>
         <div>
-          <a href="#hero" className="flex items-center gap-2">
+          <a href="#hero" className="flex items-center gap-2 w-5 h-9 md:w-8 md:h-14">
             <img ref={logoRef} src="/images/global/Logo.svg" alt="logo" loading='lazy' />
           </a>
 
