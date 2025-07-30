@@ -90,8 +90,8 @@ const Hero = () => {
                     </h1>
                     <p className="borderr">
                         <span className="text-violet-primary">Devoted</span> to turning ideas into reality through clean, intuitive
-                        design.
-                        Crafting seamless experiences that connect people with products in meaningful ways.
+                        design.<br/>
+                        Crafting seamless experiences that connect people with <br/> products in meaningful ways.
                     </p>
                     <div className="flex md:flex-row flex-col items-center gap-4 md:gap-12">
                         <a href="#projects">

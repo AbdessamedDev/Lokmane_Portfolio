@@ -1,136 +1,190 @@
+"use client"
 
-import { useRef, useState, useEffect } from "react"
-import astroOne from "/images/about/Astro.png"
+import { useRef, useState } from "react"
+import { useMediaQuery } from "react-responsive"
+import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import html2pdf from "html2pdf.js"
 import PurpleButton from "./buttons/PurpleButton"
+
+import astronautMobile from "/images/about/Astro_Mobile.png";
+import astronautDesktop from "/images/about/Astro.png";
 
 const Biography = () => {
     const astroRef = useRef(null)
     const sectionRef = useRef(null)
     const resumeRef = useRef(null)
     const [imageLoaded, setImageLoaded] = useState(false)
+    const isMobile = useMediaQuery({ maxWidth: 767 })
 
-    useEffect(() => {
-        if (!astroRef.current || !sectionRef.current || !imageLoaded) return
+    useGSAP(
+        () => {
+            if (!astroRef.current || !sectionRef.current || !imageLoaded) return
 
-        // Set initial position
-        const sectionBounds = sectionRef.current.getBoundingClientRect()
-        const astroBounds = astroRef.current.getBoundingClientRect()
-        const initialX = sectionBounds.width - astroBounds.width - 120
-        const initialY = (sectionBounds.height - astroBounds.height) / 2
-
-        gsap.set(astroRef.current, {
-            x: initialX,
-            y: initialY,
-            rotation: 0,
-            opacity: 1,
-        })
-
-        // Create a more organic floating animation
-        const floatAnimation = () => {
-            // Random movement parameters within reasonable bounds
-            const moveX = (Math.random() - 0.5) * 80 // -40px to +40px
-            const moveY = (Math.random() - 0.5) * 60 // -30px to +30px
-            const rotation = Math.random() * 20 // -10° to +10°
-
-            // Random duration between 8-12 seconds for slow, drifting movement
-            const duration = 4 + Math.random() * 4
-
-            gsap.to(astroRef.current, {
-                x: `+=${moveX}`,
-                y: `+=${moveY}`,
-                rotation: `+=${rotation}`,
-                duration: duration,
-                ease: "sine.inOut",
-                onComplete: floatAnimation, // Loop the animation
+            gsap.set(astroRef.current, {
+                opacity: 1,
+                willChange: "transform",
             })
-        }
 
-        // Start the animation
-        floatAnimation()
+            if (!isMobile) {
+                const container = astroRef.current.parentElement
+                const containerBounds = container.getBoundingClientRect()
+                const imageBounds = astroRef.current.getBoundingClientRect()
 
-        return () => {
-            // Clean up all animations on unmount
-            gsap.killTweensOf(astroRef.current)
-        }
-    }, [imageLoaded])
+                const maxX = containerBounds.width - imageBounds.width - 40
+                const maxY = containerBounds.height - imageBounds.height - 40
+
+                const initialX = Math.min(maxX * 0.7, maxX)
+                const initialY = Math.max(20, maxY * 0.3)
+
+                gsap.set(astroRef.current, {
+                    x: initialX,
+                    y: initialY,
+                    rotation: 0,
+                    transformOrigin: "center center",
+                    force3D: true,
+                })
+
+                const floatAnimation = () => {
+                    const currentX = gsap.getProperty(astroRef.current, "x")
+                    const currentY = gsap.getProperty(astroRef.current, "y")
+
+                    const safeMargin = 60
+                    const minX = safeMargin
+                    const maxSafeX = containerBounds.width - imageBounds.width - safeMargin
+                    const minY = safeMargin
+                    const maxSafeY = containerBounds.height - imageBounds.height - safeMargin
+
+                    let moveX = (Math.random() - 0.5) * 50
+                    let moveY = (Math.random() - 0.5) * 35
+
+                    const newX = currentX + moveX
+                    const newY = currentY + moveY
+
+                    if (newX < minX || newX > maxSafeX) {
+                        moveX = -moveX * 0.7
+                    }
+                    if (newY < minY || newY > maxSafeY) {
+                        moveY = -moveY * 0.7
+                    }
+
+                    const rotationAmount = (Math.random() - 0.5) * 10
+                    const duration = 4 + Math.random()
+
+                    gsap.to(astroRef.current, {
+                        x: `+=${moveX}`,
+                        y: `+=${moveY}`,
+                        rotation: `+=${rotationAmount}`,
+                        duration: duration,
+                        ease: "power2.inOut",
+                        force3D: true,
+                        onComplete: floatAnimation,
+                    })
+                }
+
+                gsap.delayedCall(0.5, floatAnimation)
+            }
+        },
+        { dependencies: [imageLoaded, isMobile], scope: sectionRef },
+    )
 
     const downloadResume = () => {
-        if (!resumeRef.current) return
+        if (!resumeRef.current) return;
 
-        const container = document.createElement("div")
+        const container = document.createElement("div");
         container.style.cssText = `
-            padding: 40px;
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-        `
+        padding: 40px;
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+    `;
 
-        const title = document.createElement("h1")
-        title.textContent = "About Lokmane BENHAMMADI"
+        // Title
+        const title = document.createElement("h1");
+        title.textContent = "About Lokmane BENHAMMADI";
         title.style.cssText = `
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #633EB7;
-            border-bottom: 3px solid #633EB7;
-            padding-bottom: 15px;
-            letter-spacing: 1px;
-        `
-        container.appendChild(title)
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;  // Reduced margin to accommodate subtitle
+        text-align: center;
+        color: #633EB7;
+        border-bottom: 3px solid #633EB7;
+        padding-bottom: 15px;
+        letter-spacing: 1px;
+    `;
+        container.appendChild(title);
 
-        const subtitle = document.createElement("h2")
-        subtitle.textContent = "UI/UX Designer & Creative Professional"
+        // Subtitle (added this section)
+        const subtitle = document.createElement("h2");
+        subtitle.textContent = "UI/UX Designer & Creative Professional";
         subtitle.style.cssText = `
-            font-size: 18px;
-            font-weight: normal;
-            margin-bottom: 25px;
-            text-align: center;
-            color: #666;
-            font-style: italic;
-        `
-        container.appendChild(subtitle)
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 25px;
+        text-align: center;
+        color: #666;
+        font-style: italic;
+    `;
+        container.appendChild(subtitle);
 
-        const content = resumeRef.current.cloneNode(true)
+        // Text container
+        const textContainer = document.createElement("div");
+        textContainer.style.cssText = `
+        width: 100%;
+        overflow: visible;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    `;
+
+        // Content
+        const content = resumeRef.current.cloneNode(true);
         content.style.cssText = `
-            font-size: 16px;
-            line-height: 1.8;
-            text-align: justify;
-            margin-bottom: 20px;
-        `
+        font-size: 16px;
+        line-height: 1.8;
+        text-align: left;
+        margin: 0 auto 20px;
+        width: 100%;
+        word-break: normal;
+        overflow-wrap: break-word;
+        white-space: normal;
+    `;
 
-        const highlights = content.querySelectorAll(".text-violet-primary")
+        // Rest of the PDF generation code remains the same...
+        const highlights = content.querySelectorAll(".text-violet-primary");
         highlights.forEach((highlight) => {
             highlight.style.cssText = `
-                color: #633EB7;
-                font-weight: bold;
-            `
-        })
+            color: #633EB7;
+            font-weight: bold;
+            display: inline;
+        `;
+        });
 
-        container.appendChild(content)
+        textContainer.appendChild(content);
+        container.appendChild(textContainer);
 
-        const footer = document.createElement("div")
+        // Footer and PDF options remain unchanged...
+        const footer = document.createElement("div");
         footer.style.cssText = `
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            text-align: center;
-            font-size: 12px;
-            color: #888;
-        `
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        text-align: center;
+        font-size: 12px;
+        color: #888;
+    `;
         footer.innerHTML = `
-            <p>Generated on ${new Date().toLocaleDateString()}</p>
-            <p>Contact: Higher School of Computer Science, Sidi Bel Abbes</p>
-        `
-        container.appendChild(footer)
+        <p>Generated on ${new Date().toLocaleDateString()}</p>
+        <p>Contact: Higher School of Computer Science, Sidi Bel Abbes</p>
+    `;
+        container.appendChild(footer);
 
         const opt = {
-            margin: [15, 15, 15, 15],
+            margin: [20, 20, 20, 20],
             filename: "Lokmane_BENHAMMADI_Resume.pdf",
             image: { type: "jpeg", quality: 0.98 },
             html2canvas: {
@@ -138,24 +192,29 @@ const Biography = () => {
                 useCORS: true,
                 letterRendering: true,
                 backgroundColor: "#ffffff",
+                logging: true,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: document.documentElement.scrollWidth,
+                windowHeight: document.documentElement.scrollHeight
             },
             jsPDF: {
                 unit: "mm",
                 format: "a4",
                 orientation: "portrait",
-            },
-        }
+                hotfixes: ["px_scaling"]
+            }
+        };
 
         html2pdf()
-            .from(container)
             .set(opt)
+            .from(container)
             .save()
             .catch((err) => {
-                console.error("Error generating PDF:", err)
-                alert("There was an error generating the PDF. Please try again.")
-            })
-    }
-
+                console.error("PDF generation error:", err);
+                alert("Error generating PDF. Please try again.");
+            });
+    };
     const handleImageLoad = () => {
         setImageLoaded(true)
     }
@@ -165,28 +224,38 @@ const Biography = () => {
             <h2>
                 Who<span className="font-serif">'</span>s behind the designs and prototypes?
             </h2>
-            <div>
-                <p ref={resumeRef}>
-                    I<span className="font-serif">'</span>m a passionate UI UX designer with a sharp eye for detail and a love for
-                    intuitive, user centred design.
-                    <br />
-                    Currently studying at the Higher School of Computer Science in Sidi Bel Abbes, I blend creativity with clear
-                    thinking to turn ideas into clean, functional products.
-                    <br />I<span className="font-serif">'</span>ve worked on projects like{" "}
-                    <span className="text-violet-primary">Dirasati</span> and{" "}
-                    <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
-                    understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
-                    design all focused on creating experiences that truly work for users.
-                </p>
-                <PurpleButton onClick={downloadResume} className={"btn-purple"}>Download resume</PurpleButton>
+            <div className="flex items-center md:flex-row flex-col-reverse md:gap-[152px] gap-11">
+                <div className="text-center md:text-left">
+                    <p
+                        ref={resumeRef}
+                        className="w-[358px] md:w-[967px] font-fsp-bold text-[10px] md:text-2xl font-normal leading-[1.8] mb-4 md:mb-8"
+                    >
+                        I<span className="font-serif">'</span>m a passionate UI UX designer with a sharp eye for detail and a love
+                        for intuitive, user centred design.
+                        <br />
+                        Currently studying at the Higher School of Computer Science in Sidi Bel Abbes, I blend creativity with clear
+                        thinking to turn ideas into clean, functional products.
+                        <br />I<span className="font-serif">'</span>ve worked on projects like{" "}
+                        <span className="text-violet-primary">Dirasati</span> and{" "}
+                        <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
+                        understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
+                        design all focused on creating experiences that truly work for users.
+                    </p>
+                    <PurpleButton onClick={downloadResume} className="btn-purple text-xs px-[10px] py-[6px] rounded-md md:text-xl md:py-4 md:px-7 md:rounded-2xl">
+                        Download resume
+                    </PurpleButton>
+                </div>
+                <div className="relative w-fit">
+                    <img
+                        ref={astroRef}
+                        src={isMobile ? astronautMobile : astronautDesktop}
+                        alt="Floating astronaut"
+                        onLoad={handleImageLoad}
+                        className="w-[168px] h-[199px] md:w-[660px] md:h-[660px]"
+                        style={{ opacity: 0 }}
+                    />
+                </div>
             </div>
-            <img
-                ref={astroRef}
-                src={astroOne || "/placeholder.svg"}
-                alt="Floating astronaut"
-                onLoad={handleImageLoad}
-                style={{ opacity: 0 }}
-            />
         </section>
     )
 }

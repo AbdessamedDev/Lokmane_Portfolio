@@ -1,7 +1,8 @@
+"use client"
 
 const PurpleButton = ({ children, onClick, className = "", ...props }) => {
     return (
-        <button className={className} onClick={onClick} {...props}>
+        <button onClick={onClick} className={`btn-purple ${className}`} {...props}>
             {children}
         </button>
     )
