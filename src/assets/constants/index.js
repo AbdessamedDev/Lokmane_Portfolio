@@ -76,7 +76,8 @@ export const projectsData = [
         id: 6,
         projectImg: dirasatiCard,
         projectTitle: "Healthcare System",
-        projectDescription: "Comprehensive healthcare management system for medical professionals.",
+        projectDescription: "Dirasati is a school management web app \n" +
+            "with dashboards for teachers and parents..",
         tags: ["Dashboard", "Healthcare", "UX Design"],
     }, {
         id: 7,

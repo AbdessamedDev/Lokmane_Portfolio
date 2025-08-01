@@ -24,12 +24,10 @@
   font-family: "UniversoDemoLight";
   src: url("/fonts/Fontspring-DEMO-universo-light.otf") format("opentype");
 }
-
 @font-face {
   font-family: "UniversoDemoThin";
   src: url("/fonts/Fontspring-DEMO-universo-thin.otf") format("opentype");
 }
-
 /* Poppins */
 @font-face {
   font-family: "Poppins";
@@ -37,7 +35,6 @@
   font-weight: 400;
   font-style: normal;
 }
-
 /* Montserrat Arabic */
 @font-face {
   font-family: "Montserrat Arabic";
@@ -45,7 +42,6 @@
   font-weight: 400;
   font-style: normal;
 }
-
 @theme {
   --font-fsp-stencil: "Universo Stencil Demo", sans-serif;
   --font-fsp-bold: "Universo Bold Demo", sans-serif;
@@ -62,7 +58,6 @@
   --color-gray-input: #272f47;
   --color-gray-input-border: #e0e0e033;
 }
-
 html,
 body {
   width: 100%;
@@ -71,70 +66,55 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
-
 @utility flex-center {
   @apply flex justify-center items-center;
 }
-
 @utility col-center {
   @apply flex flex-col justify-center items-center;
 }
-
 @utility abs-center {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
 }
-
 @utility borderr {
   @apply border border-amber-950;
 }
-
 @utility text-shadow-white {
   @apply text-shadow-[0_0_10px_#fff,_0_0_20px_#fff,_0_0_30px_#fff] text-white font-bold brightness-110 transition-all duration-300;
 }
-
 @utility shine-text {
   @apply relative text-white transition-all duration-300;
 }
-
 /* Section Title Utility Class */
 @utility section-title {
   @apply font-fsp-stencil font-medium text-[22px] md:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
 }
-
 /* Button Components Utilities */
 @utility btn-purple {
   @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
 }
-
 /* In your CSS file */
 .btn-purple:hover {
   box-shadow: 0 1px 28px rgba(129, 91, 216, 0.2), 0 2px 28px rgba(129, 91, 216, 0.25);
   transition: box-shadow 0.3s ease;
 }
-
 .btn-purple:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
-
 @utility btn-white {
-  @apply w-fit px-6 py-3 rounded-2xl text-2xl font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-transparent border-[3px] border-white text-white;
+  @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-transparent border-[3px] border-white text-white;
 }
-
 .btn-white:hover {
   border-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.5);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
 }
-
 .btn-white:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
-
 @layer components {
   main {
     @apply w-full overflow-x-hidden;
   }
-
   nav {
     @apply fixed z-50 w-full;
     div {
@@ -175,11 +155,9 @@ body {
       @apply flex-center lg:gap-12 gap-7;
     }
   }
-
   .stars {
     @apply inset-0 size-full bg-[url("/images/global/Stars.svg")];
   }
-
   #hero {
     @apply relative z-10 w-full min-h-dvh;
     .content {
@@ -204,7 +182,6 @@ body {
       }
     }
   }
-
   #about {
     @apply relative z-10 w-full min-h-dvh overflow-hidden;
     h2 {
@@ -218,105 +195,89 @@ body {
           @apply w-full font-fsp-bold text-[10px] text-center md:text-left md:text-2xl font-normal leading-[1.8] mb-4 md:mb-8;
         }
       }
-
     }
   }
-
   #projects {
     @apply relative z-10 w-full min-h-dvh py-20;
   }
-
   /* Projects Section - Exact Match to Images */
   .projects-wrapper {
     @apply w-fit mx-auto px-5;
   }
-
-  .projects-three-columns {
-    @apply grid grid-cols-3 gap-[120px];
-    width: 1680px;
-    max-width: 100%;
-    height: 514px;
-    margin: 0 auto;
-    perspective: 1000px;
+  /* New container for the carousel viewport */
+  .projects-carousel-container {
+    @apply overflow-hidden;
+    /* Default for desktop */
+    max-width: 1680px; /* 3 cards * 480px + 2 gaps * 120px */
+    margin: 0 auto; /* Center the carousel */
   }
-
+  /* New flex container for all project cards */
+  .projects-flex-row {
+    @apply flex flex-nowrap; /* Ensure no wrapping */
+    max-height: 600px; /* Keep minHeight for layout stability */
+    /* GSAP will apply translateX to this element */
+  }
   .project-card-image {
-    @apply md:w-[480px] md:h-[514px] rounded-[20px] transition-all duration-300 hover:scale-102 overflow-hidden;
-    transform-style: preserve-3d;
+    @apply rounded-[20px] h-[234px] md:h-[514px] transition-all duration-300 overflow-hidden flex-shrink-0;
+    transform-style: preserve-3d; /* Keep for potential future 3D effects or if GSAP needs it */
     backface-visibility: hidden;
     transform-origin: center center;
     will-change: transform, opacity;
+    /* Default for desktop */
+    width: 480px;
+    margin-right: 120px; /* Desktop gap */
   }
-
+  .project-card-image:last-child {
+    margin-right: 0; /* No margin on the last card */
+  }
   .project-card-image:hover {
     transform: translateY(-5px) scale(1.02);
   }
-
   .project-mockup-section {
-    @apply w-full h-[262px] overflow-hidden;
+    @apply w-full h-[110px] md:h-[262px] overflow-hidden;
     img {
-      @apply w-full h-full;
+      @apply w-full h-full object-cover; /* Added object-cover for image fitting */
     }
   }
-
   .project-content-section {
-    @apply text-center h-full bg-blue-night py-6;
+    @apply text-center h-full bg-blue-night py-[10px] md:py-6;
     color: white;
   }
-
   .project-tags-section {
-    @apply flex justify-center gap-6 mb-6 flex-wrap;
+    @apply flex justify-center gap-3 md:gap-6 mb-[10px] md:mb-6 flex-wrap;
   }
-
   .project-tag-pill {
-    @apply px-[3px] py-3 md:py-2 md:px-[21.5px] border border-white text-white md:text-xs rounded-2xl font-normal font-fsp-bold;
+    @apply px-[8px] py-[3px] md:py-2 md:px-[21.5px] border border-white text-white text-[4.5px] md:text-xs rounded-[7px] md:rounded-2xl font-normal font-fsp-bold;
     backdrop-filter: blur(10px);
   }
-
   .project-card-title {
-    @apply font-fsp-stencil md:text-[22px] text-white md:mb-[6px] font-medium;
+    @apply font-fsp-stencil text-[10px] md:text-[22px] text-white mb-1 md:mb-[6px] font-medium;
   }
-
   .project-card-desc {
-    @apply font-fsp-light font-light text-white md:text-base leading-[120%] mb-6 tracking-wider;
-  }
-
-  .learn-more-button {
-    @apply bg-violet-primary text-white md:px-5 md:py-[10px] rounded-lg font-fsp-stencil font-medium md:text-base transition-all duration-200 hover:bg-violet-primary/90 hover:scale-[1.01] cursor-pointer;
-    box-shadow: 0 4px 15px rgba(99, 62, 183, 0.4);
-  }
-
-  .learn-more-button:hover {
-    box-shadow: 0 6px 20px rgba(99, 62, 183, 0.6);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    @apply w-9/12 mx-auto md:w-full font-fsp-light font-light text-white text-[7px] md:text-base leading-[120%] mb-[10px] md:mb-6 tracking-wider;
   }
 
   .see-more-wrapper {
-    @apply flex justify-center mt-20;
+    @apply flex justify-center;
   }
 
-  .see-more-button {
-    @apply w-fit bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-fsp-stencil font-medium text-2xl transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105;
-  }
-
-  .see-more-button:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  }
-
-  .see-more-button:disabled {
-    @apply opacity-50 cursor-not-allowed;
-  }
-
-  /* Responsive adjustments */
+  /* Responsive adjustments for project cards and container */
   @media (max-width: 1024px) {
-    .projects-three-columns {
-      @apply grid-cols-2 gap-6;
+    .projects-carousel-container {
+      max-width: 984px; /* 2 cards * 480px + 1 gap * 24px */
+    }
+    .project-card-image {
+      width: 480px; /* Still 480px for tablet */
+      margin-right: 24px; /* Tablet gap (gap-6) */
     }
   }
-
   @media (max-width: 640px) {
-    .projects-three-columns {
-      @apply grid-cols-1 gap-6;
+    .projects-carousel-container {
+      max-width: 250px; /* 1 card * 250px */
+    }
+    .project-card-image {
+      width: 250px; /* Mobile card width */
+      margin-right: 24px; /* Mobile gap (gap-6) */
     }
   }
 
@@ -335,14 +296,12 @@ body {
       }
     }
   }
-
   #testimonials {
     @apply relative z-10 w-full min-h-dvh overflow-hidden;
     h2 {
       @apply md:mt-[10vh];
     }
   }
-
   #contact {
     @apply relative z-10 w-full min-h-dvh overflow-hidden;
     h2 {

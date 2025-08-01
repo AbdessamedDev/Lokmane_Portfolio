@@ -1,161 +1,142 @@
-import { useState, useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import ProjectCard from "./ProjectCard";
-import WhiteButton from "../buttons/WhiteButton";
-import { projectsData } from "../../assets/constants/index.js";
+"use client"
+
+import { useState, useRef, useEffect, useCallback } from "react"
+import { gsap } from "gsap"
+import ProjectCard from "./ProjectCard"
+import WhiteButton from "../buttons/WhiteButton"
+import { projectsData } from "../../assets/constants/index.js"
 
 const Projects = () => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const gridRef = useRef(null);
-  const containerRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const carouselInnerRef = useRef(null) // This will be the flex container that moves
 
-  const projectsPerPage = 3;
-  const totalPages = Math.ceil(projectsData.length / projectsPerPage);
-  const shouldShowButton = projectsData.length > projectsPerPage;
+  const [projectsPerPage, setProjectsPerPage] = useState(3)
+  const [itemWidthWithGap, setItemWidthWithGap] = useState(0) // Combined width of one card + its right gap
 
-  const getCurrentProjects = () => {
-    const startIndex = currentPage * projectsPerPage;
-    const endIndex = startIndex + projectsPerPage;
-    return projectsData.slice(startIndex, endIndex);
-  };
+  const totalProjects = projectsData.length
+  const totalPages = Math.ceil(totalProjects / projectsPerPage)
+  const shouldShowButton = totalProjects > projectsPerPage
+
+  const calculateLayoutMetrics = useCallback(() => {
+    const currentWidth = window.innerWidth
+    let newProjectsPerPage
+    let newItemWidthWithGap
+
+    if (currentWidth <= 640) {
+      // Mobile breakpoint
+      newProjectsPerPage = 1
+      newItemWidthWithGap = 250 + 24 // Card width 250px + gap 24px (from CSS margin-right)
+    } else if (currentWidth <= 1024) {
+      // Tablet breakpoint
+      newProjectsPerPage = 2
+      newItemWidthWithGap = 480 + 24 // Card width 480px + gap 24px
+    } else {
+      // Desktop breakpoint
+      newProjectsPerPage = 3
+      newItemWidthWithGap = 480 + 120 // Card width 480px + gap 120px
+    }
+
+    setProjectsPerPage(newProjectsPerPage)
+    setItemWidthWithGap(newItemWidthWithGap)
+
+    // Adjust current page if it exceeds new total pages
+    const newTotalPages = Math.ceil(totalProjects / newProjectsPerPage)
+    if (currentPage >= newTotalPages) {
+      setCurrentPage(0) // Reset to first page if current page is out of bounds
+      gsap.set(carouselInnerRef.current, { x: 0 }) // Reset position
+    } else {
+      // Re-apply current page's translation based on new metrics
+      const targetX = -currentPage * newItemWidthWithGap * newProjectsPerPage
+      gsap.set(carouselInnerRef.current, { x: targetX })
+    }
+  }, [currentPage, totalProjects])
+
+  useEffect(() => {
+    calculateLayoutMetrics() // Initial calculation on mount
+    window.addEventListener("resize", calculateLayoutMetrics)
+    return () => window.removeEventListener("resize", calculateLayoutMetrics)
+  }, [calculateLayoutMetrics])
 
   const handleSeeMore = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
+    if (isAnimating || itemWidthWithGap === 0) return
 
-    const cards = Array.from(gridRef.current.children);
-    const container = containerRef.current;
+    setIsAnimating(true)
 
-    // Set up 3D perspective
-    gsap.set(container, { perspective: 1200 });
+    let nextPageIndex = currentPage + 1
+    let targetX
 
-    // Create master timeline
-    const masterTL = gsap.timeline({
-      onComplete: () => setIsAnimating(false)
-    });
-
-    // Animation for current cards (outgoing)
-    masterTL.to(cards, {
-      duration: 0.6,
-      x: -300,
-      opacity: 0,
-      rotationY: 20,
-      scale: 0.9,
-      stagger: 0.1,
-      ease: "power3.in",
-      onComplete: () => {
-        requestAnimationFrame(() => {
-          setCurrentPage(prev => (prev + 1) % totalPages);
-        });
-      }
-    });
-
-    // Animation for new cards (incoming)
-    masterTL.add(() => {
-      const newCards = Array.from(gridRef.current.children);
-      if (newCards.length === 0) return;
-
-      // Set initial state for new cards
-      gsap.set(newCards, {
-        x: 400,
-        y: 40,
-        opacity: 0,
-        rotationY: -15,
-        scale: 0.92,
-        z: 100
-      });
-
-      // Animate in new cards
-      gsap.to(newCards, {
-        duration: 0.9,
-        x: 0,
-        y: 0,
-        z: 0,
-        opacity: 1,
-        rotationY: 0,
-        scale: 1,
-        stagger: {
-          each: 0.15,
-          from: "center"
-        },
-        ease: "expo.out",
-        clearProps: "all" // Clean up after animation
-      });
-    });
-  };
-
-  // Initial animation on mount
-  useEffect(() => {
-    if (gridRef.current) {
-      const cards = Array.from(gridRef.current.children);
-      const container = containerRef.current;
-
-      gsap.set(container, { perspective: 1200 });
-      gsap.set(cards, {
-        x: 200,
-        y: 30,
-        opacity: 0,
-        rotationY: -10,
-        scale: 0.95
-      });
-
-      gsap.to(cards, {
-        duration: 1,
-        x: 0,
-        y: 0,
-        opacity: 1,
-        rotationY: 0,
-        scale: 1,
-        stagger: {
-          each: 0.15,
-          from: "center"
-        },
-        ease: "expo.out",
-        delay: 0.4
-      });
+    if (nextPageIndex >= totalPages) {
+      nextPageIndex = 0 // Loop back to the first page
+      targetX = 0
+    } else {
+      targetX = -nextPageIndex * itemWidthWithGap * projectsPerPage
     }
-  }, []);
+
+    gsap.to(carouselInnerRef.current, {
+      x: targetX,
+      duration: 0.8, // Smooth animation duration
+      ease: "power3.inOut", // Smooth easing function
+      onComplete: () => {
+        setCurrentPage(nextPageIndex)
+        setIsAnimating(false)
+      },
+    })
+  }
+
+  // Initial animation for cards on mount
+  useEffect(() => {
+    if (carouselInnerRef.current) {
+      gsap.set(carouselInnerRef.current, { x: 0 }) // Ensure initial position is 0
+      const cards = Array.from(carouselInnerRef.current.children)
+      gsap.fromTo(
+          cards,
+          { opacity: 0, y: 50 }, // Initial state: hidden and slightly below
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.1, // Stagger the animation for each card
+            ease: "power3.out",
+            delay: 0.4,
+          },
+      )
+    }
+  }, []) // Empty dependency array means it runs once on mount
 
   return (
-      <section id="projects" className="stars" ref={containerRef}>
+      <section id="projects" className="stars">
         <h2 className="section-title">What ideas have I brought to life?</h2>
-
         <div className="projects-wrapper">
           <div
-              className="projects-three-columns borderr w-[1680px] relative"
-              ref={gridRef}
-              style={{
-                minHeight: "600px",
-                transformStyle: "preserve-3d"
-              }}
+              className="projects-carousel-container" // This acts as the viewport, hiding overflow
           >
-            {getCurrentProjects().map(({id, projectImg, projectTitle, projectDescription, tags}) => (
-                <ProjectCard
-                    key={id}
-                    projectImg={projectImg}
-                    projectTitle={projectTitle}
-                    projectDescription={projectDescription}
-                    tags={tags}
-                    style={{ transformStyle: "preserve-3d" }}
-                />
-            ))}
+            <div
+                className="projects-flex-row" // This is the horizontally scrolling container
+                ref={carouselInnerRef}
+                style={{Height: "514px" }} // Maintain minHeight for consistent layout
+            >
+              {projectsData.map(({ id, projectImg, projectTitle, projectDescription, tags }) => (
+                  <ProjectCard
+                      key={id}
+                      projectImg={projectImg}
+                      projectTitle={projectTitle}
+                      projectDescription={projectDescription}
+                      tags={tags}
+                  />
+              ))}
+            </div>
           </div>
-
           {shouldShowButton && (
-              <div className="see-more-wrapper mt-12">
-                <WhiteButton
-                    onClick={handleSeeMore}
-                    disabled={isAnimating}
-                    className="btn-white"
-                >
+              <div className="see-more-wrapper mt-8 md:mt-20">
+                <WhiteButton onClick={handleSeeMore} disabled={isAnimating} className="btn-white border-[2px] text-[10px] py-2 px-4 md:border-[3px] md:py-3 md:px-6 md:text-2xl rounded-lg">
                   {currentPage === totalPages - 1 ? "Return to First Projects" : "See More"}
                 </WhiteButton>
               </div>
           )}
         </div>
       </section>
-  );
-};
+  )
+}
 
-export default Projects;
+export default Projects
