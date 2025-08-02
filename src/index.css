@@ -1,314 +1,385 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Universo Stencil Demo";
-  src: url("/fonts/FSP DEMO - Universo Stencil.ttf") format("truetype");
+    font-family: "Universo Stencil Demo";
+    src: url("/fonts/FSP DEMO - Universo Stencil.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Universo Bold Demo";
-  src: url("/fonts/FSP DEMO - Universo Bold.ttf") format("truetype");
+    font-family: "Universo Bold Demo";
+    src: url("/fonts/FSP DEMO - Universo Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Universo Black Demo";
-  src: url("/fonts/FSP DEMO - Universo Black.ttf") format("truetype");
+    font-family: "Universo Black Demo";
+    src: url("/fonts/FSP DEMO - Universo Black.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "UniversoDemoRegular";
-  src: url("/fonts/Fontspring-DEMO-universo-regular.otf") format("opentype");
+    font-family: "UniversoDemoRegular";
+    src: url("/fonts/Fontspring-DEMO-universo-regular.otf") format("opentype");
 }
 
 @font-face {
-  font-family: "UniversoDemoLight";
-  src: url("/fonts/Fontspring-DEMO-universo-light.otf") format("opentype");
+    font-family: "UniversoDemoLight";
+    src: url("/fonts/Fontspring-DEMO-universo-light.otf") format("opentype");
 }
+
 @font-face {
-  font-family: "UniversoDemoThin";
-  src: url("/fonts/Fontspring-DEMO-universo-thin.otf") format("opentype");
+    font-family: "UniversoDemoThin";
+    src: url("/fonts/Fontspring-DEMO-universo-thin.otf") format("truetype");
 }
+
 /* Poppins */
 @font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Medium.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Poppins";
+    src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
 }
+
 /* Montserrat Arabic */
 @font-face {
-  font-family: "Montserrat Arabic";
-  src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Montserrat Arabic";
+    src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
 }
+
 @theme {
-  --font-fsp-stencil: "Universo Stencil Demo", sans-serif;
-  --font-fsp-bold: "Universo Bold Demo", sans-serif;
-  --font-fsp-black: "Universo Black Demo", sans-serif;
-  --font-fsp-regular: "UniversoDemoRegular";
-  --font-fsp-light: "UniversoDemoLight";
-  --font-fsp-thin: "UniversoDemoThin";
-  --font-poppins-medium: "Poppins";
-  --font-montserrat: "Montserrat Arabic", sans-serif;
-  --color-violet-primary: #633eb7;
-  --color-violet-secondary: #392760;
-  --color-white-secondary: #fefefe;
-  --color-blue-night: #0a101e;
-  --color-gray-input: #272f47;
-  --color-gray-input-border: #e0e0e033;
+    --font-fsp-stencil: "Universo Stencil Demo", sans-serif;
+    --font-fsp-bold: "Universo Bold Demo", sans-serif;
+    --font-fsp-black: "Universo Black Demo", sans-serif;
+    --font-fsp-regular: "UniversoDemoRegular";
+    --font-fsp-light: "UniversoDemoLight";
+    --font-fsp-thin: "UniversoDemoThin";
+    --font-poppins-medium: "Poppins";
+    --font-montserrat: "Montserrat Arabic", sans-serif;
+    --color-violet-primary: #633eb7;
+    --color-violet-secondary: #392760;
+    --color-white-secondary: #fefefe;
+    --color-blue-night: #0a101e;
+    --color-gray-input: #272f47;
+    --color-gray-input-border: #e0e0e033;
 }
+
 html,
 body {
-  width: 100%;
-  background-color: #05080f;
-  color: white;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+    width: 100%;
+    background-color: #05080f;
+    color: white;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
+
 @utility flex-center {
-  @apply flex justify-center items-center;
+    @apply flex justify-center items-center;
 }
+
 @utility col-center {
-  @apply flex flex-col justify-center items-center;
+    @apply flex flex-col justify-center items-center;
 }
+
 @utility abs-center {
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
 }
+
 @utility borderr {
-  @apply border border-amber-950;
+    @apply border border-amber-950;
 }
+
 @utility text-shadow-white {
-  @apply text-shadow-[0_0_10px_#fff,_0_0_20px_#fff,_0_0_30px_#fff] text-white font-bold brightness-110 transition-all duration-300;
+    @apply text-shadow-[0_0_10px_#fff,_0_0_20px_#fff,_0_0_30px_#fff] text-white font-bold brightness-110 transition-all duration-300;
 }
+
 @utility shine-text {
-  @apply relative text-white transition-all duration-300;
+    @apply relative text-white transition-all duration-300;
 }
+
 /* Section Title Utility Class */
 @utility section-title {
-  @apply font-fsp-stencil font-medium text-[22px] md:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
+    @apply font-fsp-stencil font-medium text-[22px] md:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
 }
+
 /* Button Components Utilities */
 @utility btn-purple {
-  @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
+    @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
 }
+
 /* In your CSS file */
 .btn-purple:hover {
-  box-shadow: 0 1px 28px rgba(129, 91, 216, 0.2), 0 2px 28px rgba(129, 91, 216, 0.25);
-  transition: box-shadow 0.3s ease;
+    box-shadow: 0 1px 28px rgba(129, 91, 216, 0.2), 0 2px 28px rgba(129, 91, 216, 0.25);
+    transition: box-shadow 0.3s ease;
 }
+
 .btn-purple:disabled {
-  @apply opacity-50 cursor-not-allowed;
+    @apply opacity-50 cursor-not-allowed;
 }
+
 @utility btn-white {
-  @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-transparent border-[3px] border-white text-white;
+    @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-transparent border-white text-white;
 }
+
 .btn-white:hover {
-  border-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.5);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
 }
+
 .btn-white:disabled {
-  @apply opacity-50 cursor-not-allowed;
+    @apply opacity-50 cursor-not-allowed;
 }
+
 @layer components {
-  main {
-    @apply w-full overflow-x-hidden;
-  }
-  nav {
-    @apply fixed z-50 w-full;
-    div {
-      @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
+    main {
+        @apply w-full overflow-x-hidden;
     }
-    a {
-      @apply cursor-pointer text-nowrap md:text-xl md:font-medium text-[2.57vw] font-fsp-stencil transition-all duration-300;
-    }
-    a.nav-link {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    a.nav-link::before {
-      content: "";
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: white;
-      transition: width 0.3s ease;
-    }
-    a.nav-link:hover::before {
-      width: 100%;
-    }
-    a:hover {
-      color: #fff;
-    }
-    a.active {
-      color: #fff;
-    }
-    a.nav-link.active::before {
-      width: 100%;
-      height: 2px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
-    }
-    ul {
-      @apply flex-center lg:gap-12 gap-7;
-    }
-  }
-  .stars {
-    @apply inset-0 size-full bg-[url("/images/global/Stars.svg")];
-  }
-  #hero {
-    @apply relative z-10 w-full min-h-dvh;
-    .content {
-      @apply container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-30 top-[60vw] md:top-[32vh] px-0 sm:px-5 text-center borderr;
-      p:first-of-type {
-        @apply font-fsp-bold text-sm md:text-[32px] font-normal;
-      }
-      h1 {
-        @apply font-fsp-stencil font-medium text-5xl leading-[120%] md:text-[165px] mt-2 transition-all duration-100;
-      }
-      h1:hover {
-        color: #fff;
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px
-        rgba(255, 255, 255, 0.3);
-        transition: text-shadow 0.3s ease;
-      }
-      p:last-of-type {
-        @apply font-medium font-fsp-bold w-[95vw] md:w-[1230px] text-center text-[10px] md:text-[28px] mx-auto mt-8;
-      }
-      div {
-        @apply mt-6 md:mt-18 mx-auto w-fit;
-      }
-    }
-  }
-  #about {
-    @apply relative z-10 w-full min-h-dvh overflow-hidden;
-    h2 {
-      @apply section-title md:top-[10vh] relative;
-    }
-    div {
-      @apply relative w-full max-w-[1800px] mx-auto mt-12 md:mt-[150px] px-0 md:px-5;
-      div {
-        @apply w-[358px] md:w-[967px];
-        p {
-          @apply w-full font-fsp-bold text-[10px] text-center md:text-left md:text-2xl font-normal leading-[1.8] mb-4 md:mb-8;
+
+    nav {
+        @apply fixed z-50 w-full;
+
+        div {
+            @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
         }
-      }
-    }
-  }
-  #projects {
-    @apply relative z-10 w-full min-h-dvh py-20;
-  }
-  /* Projects Section - Exact Match to Images */
-  .projects-wrapper {
-    @apply w-fit mx-auto px-5;
-  }
-  /* New container for the carousel viewport */
-  .projects-carousel-container {
-    @apply overflow-hidden;
-    /* Default for desktop */
-    max-width: 1680px; /* 3 cards * 480px + 2 gaps * 120px */
-    margin: 0 auto; /* Center the carousel */
-  }
-  /* New flex container for all project cards */
-  .projects-flex-row {
-    @apply flex flex-nowrap; /* Ensure no wrapping */
-    max-height: 600px; /* Keep minHeight for layout stability */
-    /* GSAP will apply translateX to this element */
-  }
-  .project-card-image {
-    @apply rounded-[20px] h-[234px] md:h-[514px] transition-all duration-300 overflow-hidden flex-shrink-0;
-    transform-style: preserve-3d; /* Keep for potential future 3D effects or if GSAP needs it */
-    backface-visibility: hidden;
-    transform-origin: center center;
-    will-change: transform, opacity;
-    /* Default for desktop */
-    width: 480px;
-    margin-right: 120px; /* Desktop gap */
-  }
-  .project-card-image:last-child {
-    margin-right: 0; /* No margin on the last card */
-  }
-  .project-card-image:hover {
-    transform: translateY(-5px) scale(1.02);
-  }
-  .project-mockup-section {
-    @apply w-full h-[110px] md:h-[262px] overflow-hidden;
-    img {
-      @apply w-full h-full object-cover; /* Added object-cover for image fitting */
-    }
-  }
-  .project-content-section {
-    @apply text-center h-full bg-blue-night py-[10px] md:py-6;
-    color: white;
-  }
-  .project-tags-section {
-    @apply flex justify-center gap-3 md:gap-6 mb-[10px] md:mb-6 flex-wrap;
-  }
-  .project-tag-pill {
-    @apply px-[8px] py-[3px] md:py-2 md:px-[21.5px] border border-white text-white text-[4.5px] md:text-xs rounded-[7px] md:rounded-2xl font-normal font-fsp-bold;
-    backdrop-filter: blur(10px);
-  }
-  .project-card-title {
-    @apply font-fsp-stencil text-[10px] md:text-[22px] text-white mb-1 md:mb-[6px] font-medium;
-  }
-  .project-card-desc {
-    @apply w-9/12 mx-auto md:w-full font-fsp-light font-light text-white text-[7px] md:text-base leading-[120%] mb-[10px] md:mb-6 tracking-wider;
-  }
 
-  .see-more-wrapper {
-    @apply flex justify-center;
-  }
+        a {
+            @apply cursor-pointer text-nowrap md:text-xl md:font-medium text-[2.57vw] font-fsp-stencil transition-all duration-300;
+        }
 
-  /* Responsive adjustments for project cards and container */
-  @media (max-width: 1024px) {
+        a.nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        a.nav-link::before {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        a.nav-link:hover::before {
+            width: 100%;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        a.active {
+            color: #fff;
+        }
+
+        a.nav-link.active::before {
+            width: 100%;
+            height: 2px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        ul {
+            @apply flex-center lg:gap-12 gap-7;
+        }
+    }
+
+    .stars {
+        @apply inset-0 size-full bg-[url("/images/global/Stars.svg")];
+    }
+
+    #hero {
+        @apply relative z-10 w-full min-h-dvh;
+
+        .content {
+            @apply container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-30 top-[60vw] md:top-[32vh] px-0 sm:px-5 text-center borderr;
+
+            p:first-of-type {
+                @apply font-fsp-bold text-sm md:text-[32px] font-normal;
+            }
+
+            h1 {
+                @apply font-fsp-stencil font-medium text-5xl leading-[120%] md:text-[165px] mt-2 transition-all duration-100;
+            }
+
+            h1:hover {
+                color: #fff;
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4), 0 0 15px
+                rgba(255, 255, 255, 0.3);
+                transition: text-shadow 0.3s ease;
+            }
+
+            p:last-of-type {
+                @apply font-medium font-fsp-bold w-[95vw] md:w-[1230px] text-center text-[10px] md:text-[28px] mx-auto mt-8;
+            }
+
+            div {
+                @apply mt-6 md:mt-18 mx-auto w-fit;
+            }
+        }
+    }
+
+    #about {
+        @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+        h2 {
+            @apply section-title md:top-[10vh] relative;
+        }
+
+        div {
+            @apply relative w-full max-w-[1800px] mx-auto mt-12 md:mt-[150px] px-0 md:px-5;
+
+            div {
+                @apply w-[358px] md:w-[967px];
+
+                p {
+                    @apply w-full font-fsp-bold text-[10px] text-center md:text-left md:text-2xl font-normal leading-[1.8] mb-4 md:mb-8;
+                }
+            }
+        }
+    }
+
+    #projects {
+        @apply relative z-10 w-full min-h-dvh py-20;
+    }
+
+    /* Projects Section - Exact Match to Images */
+    .projects-wrapper {
+        @apply w-fit mx-auto px-5;
+    }
+
+    /* New container for the carousel viewport */
     .projects-carousel-container {
-      max-width: 984px; /* 2 cards * 480px + 1 gap * 24px */
+        @apply overflow-hidden;
+        /* Default for desktop */
+        max-width: 1680px;
+        /* 3 cards * 480px + 2 gaps * 120px */
+        margin: 0 auto;
+        /* Center the carousel */
     }
-    .project-card-image {
-      width: 480px; /* Still 480px for tablet */
-      margin-right: 24px; /* Tablet gap (gap-6) */
-    }
-  }
-  @media (max-width: 640px) {
-    .projects-carousel-container {
-      max-width: 250px; /* 1 card * 250px */
-    }
-    .project-card-image {
-      width: 250px; /* Mobile card width */
-      margin-right: 24px; /* Mobile gap (gap-6) */
-    }
-  }
 
-  #skills {
-    @apply relative z-10 w-full min-h-dvh overflow-hidden;
-    .planets-container {
-      @apply relative mx-auto;
+    /* New flex container for all project cards */
+    .projects-flex-row {
+        @apply flex flex-nowrap;
+        /* Ensure no wrapping */
+        max-height: 600px;
+        /* Keep minHeight for layout stability */
+        /* GSAP will apply translateX to this element */
     }
-    .other-skills-container {
-      @apply mt-[5vw];
-      .other-skills-title {
-        @apply text-center font-fsp-stencil font-medium text-[40px] mb-20;
-      }
-      .other-skills {
-        @apply w-[1680px] grid [grid-template-columns:repeat(auto-fill,minmax(480px,1fr))] [grid-template-rows:auto] gap-[120px];
-      }
+
+    .project-card-image {
+        @apply rounded-[20px] h-[234px] md:h-[514px] transition-all duration-300 overflow-hidden flex-shrink-0;
+        transform-style: preserve-3d;
+        /* Keep for potential future 3D effects or if GSAP needs it */
+        backface-visibility: hidden;
+        transform-origin: center center;
+        will-change: transform, opacity;
+        /* Default for desktop */
+        width: 480px;
+        margin-right: 120px;
+        /* Desktop gap */
     }
-  }
-  #testimonials {
-    @apply relative z-10 w-full min-h-dvh overflow-hidden;
-    h2 {
-      @apply md:mt-[10vh];
+
+    .project-card-image:last-child {
+        margin-right: 0;
+        /* No margin on the last card */
     }
-  }
-  #contact {
-    @apply relative z-10 w-full min-h-dvh overflow-hidden;
-    h2 {
-      @apply md:mt-[10vh];
+
+    .project-card-image:hover {
+        transform: translateY(-5px) scale(1.02);
     }
-    .contact-container {
-      @apply md:w-[1680px] mx-auto flex items-center gap-[168.5px];
+
+    .project-mockup-section {
+        @apply w-full h-[110px] md:h-[262px] overflow-hidden;
+
+        img {
+            @apply w-full h-full object-cover;
+            /* Added object-cover for image fitting */
+        }
     }
-  }
+
+    .project-content-section {
+        @apply text-center h-full bg-blue-night py-[10px] md:py-6;
+        color: white;
+    }
+
+    .project-tags-section {
+        @apply flex justify-center gap-3 md:gap-6 mb-[10px] md:mb-6 flex-wrap;
+    }
+
+    .project-tag-pill {
+        @apply px-[8px] py-[3px] md:py-2 md:px-[21.5px] border border-white text-white text-[4.5px] md:text-xs rounded-[7px] md:rounded-2xl font-normal font-fsp-bold;
+        backdrop-filter: blur(10px);
+    }
+
+    .project-card-title {
+        @apply font-fsp-stencil text-[10px] md:text-[22px] text-white mb-1 md:mb-[6px] font-medium;
+    }
+
+    .project-card-desc {
+        @apply w-9/12 mx-auto md:w-full font-fsp-light font-light text-white text-[7px] md:text-base leading-[120%] mb-[10px] md:mb-6 tracking-wider;
+    }
+
+    .see-more-wrapper {
+        @apply flex justify-center;
+    }
+
+    /* Responsive adjustments for project cards and container */
+    @media (max-width: 1024px) {
+        .projects-carousel-container {
+            max-width: 984px;
+            /* 2 cards * 480px + 1 gap * 24px */
+        }
+
+        .project-card-image {
+            width: 480px;
+            /* Still 480px for tablet */
+            margin-right: 24px;
+            /* Tablet gap (gap-6) */
+        }
+    }
+
+    @media (max-width: 640px) {
+        .projects-carousel-container {
+            max-width: 250px;
+            /* 1 card * 250px */
+        }
+
+        .project-card-image {
+            width: 250px;
+            /* Mobile card width */
+            margin-right: 24px;
+            /* Mobile gap (gap-6) */
+        }
+    }
+
+    #skills {
+        @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+        /* These styles are now handled directly in JSX for better responsiveness */
+        .other-skills-title {
+            @apply text-center font-fsp-stencil font-medium text-xl md:text-[40px] mb-5 md:mb-20;
+        }
+    }
+
+    #testimonials {
+        @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+        h2 {
+            @apply md:mt-[10vh];
+        }
+    }
+
+    #contact {
+        @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+        h2 {
+            @apply md:mt-[10vh];
+        }
+
+        .contact-container {
+            @apply md:w-[1680px] mx-auto flex items-center gap-[168.5px];
+        }
+    }
 }

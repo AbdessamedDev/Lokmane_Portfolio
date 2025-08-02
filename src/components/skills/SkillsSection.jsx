@@ -1,55 +1,76 @@
 "use client"
-
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react"
 import { skillsInfos, otherSkills } from "../../assets/constants/index.js"
 import SkillPlanet from "./SkillPlanet.jsx"
-import SkillProgress from "./SkillProgress.jsx";
+import SkillProgress from "./SkillProgress.jsx"
 
 const SkillsSection = () => {
     // Pagination state
-    const [currentPage, setCurrentPage] = useState(0);
-    const [buttonText, setButtonText] = useState("See more");
-    const skillsPerPage = 6;
-    const totalPages = Math.ceil(otherSkills.length / skillsPerPage);
+    const [currentPage, setCurrentPage] = useState(0)
+    const [buttonText, setButtonText] = useState("See more")
+    const [responsiveSkillsPerPage, setResponsiveSkillsPerPage] = useState(6) // Default for desktop
+    const [isMobile, setIsMobile] = useState(false) // State to track mobile view
+
+    useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth < 768
+            setIsMobile(mobile)
+            setResponsiveSkillsPerPage(mobile ? 2 : 6)
+        }
+
+        // Set initial value
+        handleResize()
+
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
+
+    const totalPages = Math.ceil(otherSkills.length / responsiveSkillsPerPage)
 
     // Calculate current skills to display
-    const startIdx = currentPage * skillsPerPage;
-    const endIdx = startIdx + skillsPerPage;
-    const currentSkills = otherSkills.slice(startIdx, endIdx);
+    const startIdx = currentPage * responsiveSkillsPerPage
+    const endIdx = startIdx + responsiveSkillsPerPage
+    const currentSkills = otherSkills.slice(startIdx, endIdx)
 
     // Update button text based on pagination state
     useEffect(() => {
         if (currentPage === totalPages - 1) {
-            setButtonText("Return");
+            setButtonText("Return")
         } else {
-            setButtonText("See more");
+            setButtonText("See more")
         }
-    }, [currentPage, totalPages]);
+    }, [currentPage, totalPages])
 
     // Handle pagination click
     const handlePaginationClick = () => {
         if (currentPage === totalPages - 1) {
             // Return to first page
-            setCurrentPage(0);
+            setCurrentPage(0)
         } else {
             // Go to next page
-            setCurrentPage(prev => prev + 1);
+            setCurrentPage((prev) => prev + 1)
         }
-    };
+    }
 
     return (
         <section id="skills" className="stars">
             {/* Main Skills Planets Section */}
             <h1 className="section-title">What skills do I bring to the table?</h1>
             <div
-                className="planets-container"
-                style={{
-                    width: "1680px",
-                    height: "713px",
-                    position: "relative",
-                    margin: "0 auto",
-                    overflow: "visible",
-                }}
+                className={`planets-container ${
+                    isMobile ? "grid grid-cols-2 gap-x-4 gap-y-8 justify-items-center items-center" : ""
+                }`}
+                style={
+                    isMobile
+                        ? {}
+                        : {
+                            width: "1680px",
+                            height: "713px",
+                            position: "relative",
+                            margin: "0 auto",
+                            overflow: "visible",
+                        }
+                }
             >
                 {skillsInfos.map((skill, index) => (
                     <SkillPlanet
@@ -58,19 +79,18 @@ const SkillsSection = () => {
                         infos={skill.infos}
                         dimensions={skill.dimensions}
                         index={index}
+                        isParentMobile={isMobile}
                     />
                 ))}
             </div>
-
             {/* Other Skills Section with Pagination */}
-            <div
-                className="other-skills-container borderr"
-                style={{
-                    minWidth: "1680px",
-                }}
-            >
+            <div className="other-skills-container borderr w-full max-w-full mx-auto mt-8 md:mt-[5vw] px-4 md:px-0">
                 <h1 className="other-skills-title">Other Skills</h1>
-                <div className="other-skills mx-auto">
+                <div
+                    className="other-skills mx-auto
+                                grid grid-cols-1 gap-y-4 w-full max-w-[300px]
+                                md:grid-cols-3 md:gap-[120px] md:w-[1680px] md:max-w-none"
+                >
                     {currentSkills.map((skill, index) => (
                         <SkillProgress
                             key={`otherSkill-${startIdx + index}`}
@@ -79,28 +99,24 @@ const SkillsSection = () => {
                             index={startIdx + index}
                         />
                     ))}
-                    {
-                        [...Array(6 - currentSkills.length)].map((key, index) => <div className="w-[480px] h-[137px]"/>)
-                    }
+                    {[...Array(responsiveSkillsPerPage - currentSkills.length)].map((_, index) => (
+                        <div key={`placeholder-${index}`} className="w-full h-[100px] md:w-[480px] md:h-[137px]" />
+                    ))}
                 </div>
-
                 {/* See More/Return Button */}
-                <div className="w-full flex-center mt-20">
-                    <button
-                        onClick={handlePaginationClick}
-                        className="btn-white transition-all duration-300 hover:scale-105"
-                    >
+                <div className="w-full flex-center mt-8 md:mt-20">
+                    <button onClick={handlePaginationClick} className="btn-white border-2 text-[10px] px-4 py-2 rounded-lg md:text-2xl md:px-6 md:py-4 md:border-3">
                         {buttonText}
                     </button>
                 </div>
             </div>
-
             {/* Global floating animations */}
             <style jsx global>{`
-                ${[...Array(otherSkills.length)].map((_, index) => {
-                const animationDuration = 3 + (index % 3);
-                const floatDistance = 15 + (index % 2) * 10;
-                return `
+                ${[...Array(otherSkills.length)]
+                        .map((_, index) => {
+                            const animationDuration = 3 + (index % 3)
+                            const floatDistance = 15 + (index % 2) * 10
+                            return `
                         @keyframes float-${index} {
                             0%, 100% {
                                 transform: translateY(0px);
@@ -109,11 +125,12 @@ const SkillsSection = () => {
                                 transform: translateY(-${floatDistance}px);
                             }
                         }
-                    `;
-            }).join("")}
+                    `
+                        })
+                        .join("")}
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default SkillsSection;
+export default SkillsSection
