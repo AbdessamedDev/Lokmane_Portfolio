@@ -1,5 +1,4 @@
 "use client"
-
 import { useRef } from "react"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
@@ -12,7 +11,6 @@ const Toast = ({ show, type, message, onClose }) => {
     useGSAP(() => {
         const toast = toastRef.current
         const progress = progressRef.current
-
         if (show) {
             // Entrance animation
             gsap.fromTo(
@@ -32,7 +30,6 @@ const Toast = ({ show, type, message, onClose }) => {
                     ease: "back.out(1.7)",
                 },
             )
-
             // Progress bar animation
             gsap.fromTo(
                 progress,
@@ -43,7 +40,6 @@ const Toast = ({ show, type, message, onClose }) => {
                     ease: "none",
                 },
             )
-
             // Auto close animation
             gsap.to(toast, {
                 opacity: 0,
@@ -77,10 +73,10 @@ const Toast = ({ show, type, message, onClose }) => {
     const progressColor = isSuccess ? "bg-green-500" : "bg-red-500"
 
     return (
-        <div className="fixed top-30 right-4 z-50">
+        <div className="fixed top-1/5 left-1/2 -translate-x-1/2 z-[999]">
             <div
                 ref={toastRef}
-                className={`${bgColor} ${borderColor} border backdrop-blur-sm rounded-lg p-4 min-w-[300px] max-w-[400px] shadow-2xl`}
+                className={`${bgColor} ${borderColor} border backdrop-blur-sm rounded-lg p-4 w-[370px] shadow-2xl`}
                 style={{
                     boxShadow: `0 0 30px ${isSuccess ? "rgba(34, 197, 94, 0.3)" : "rgba(239, 68, 68, 0.3)"}`,
                 }}
@@ -88,7 +84,7 @@ const Toast = ({ show, type, message, onClose }) => {
                 <div className="flex items-start gap-3">
                     <div className={`${iconColor} mt-0.5`}>{isSuccess ? <CheckCircle size={20} /> : <XCircle size={20} />}</div>
                     <div className="flex-1">
-                        <p className="text-white font-fsp-bold text-sm leading-relaxed">{message}</p>
+                        <p className="text-white font-fsp-bold text-[12px] leading-relaxed">{message}</p>
                     </div>
                     <button onClick={handleClose} className="text-gray-400 hover:text-white transition-colors duration-200 ml-2">
                         <X size={16} />
@@ -101,5 +97,4 @@ const Toast = ({ show, type, message, onClose }) => {
         </div>
     )
 }
-
 export default Toast
