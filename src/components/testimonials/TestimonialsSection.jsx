@@ -7,11 +7,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import TestimonialCard from "./testimonialCard.jsx"
 import { testimonials } from "../../assets/constants/index.js"
 import "./testimonials.css"
+import {useSectionTitleAnimation} from "../../hooks/useSectionTitleAnimation.jsx";
 
 gsap.registerPlugin(ScrollTrigger)
 
 const TestimonialsSection = () => {
     const sectionRef = useRef(null)
+    const titleRef = useSectionTitleAnimation()
     const sliderRef = useRef(null)
     const [currentDot, setCurrentDot] = useState(0)
     const [isScrolling, setIsScrolling] = useState(false)
@@ -32,7 +34,6 @@ const TestimonialsSection = () => {
                     trigger: sectionRef.current,
                     start: "top 80%",
                     end: "bottom 20%",
-                    toggleActions: "play none none reverse",
                 },
             },
         )
@@ -111,7 +112,7 @@ const TestimonialsSection = () => {
 
     return (
         <section ref={sectionRef} id="testimonials" className="stars py-20 overflow-hidden">
-            <h2 className="section-title">
+            <h2 className="section-title" ref={titleRef}>
                 What<span className="font-serif">'</span>s it like to work with me?
             </h2>
             <div

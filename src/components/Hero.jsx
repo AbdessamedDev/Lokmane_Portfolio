@@ -16,21 +16,31 @@ const Hero = () => {
     const isMobile = useMediaQuery({ maxWidth: 767 })
 
     useGSAP(() => {
-        // Create a shine effect on the h1 element that only runs once on page load
+        // Select all text elements inside .content
+        gsap.fromTo(
+            containerRef.current.querySelectorAll(".content p, .content h1, .content a"),
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.15, // delay between each element
+                ease: "power2.out"
+            }
+        )
+
+        // Your existing shine effect
         const h1Element = h1Ref.current
         if (h1Element) {
-            // Initial setup
             gsap.set(h1Element, {
                 backgroundPosition: "0% 0%",
                 textShadow: "0 0 0 rgba(255,255,255,0)",
             })
 
-            // Create a timeline for the shine effect that only runs once on page load
             const tl = gsap.timeline({
-                repeat: 0, // Run only once
+                repeat: 0,
                 repeatDelay: 0,
                 onComplete: () => {
-                    // Reset to normal state after animation completes
                     gsap.to(h1Element, {
                         duration: 0.2,
                         textShadow: "0 0 5px rgba(255,255,255,0.3)",
@@ -39,16 +49,17 @@ const Hero = () => {
                 },
             })
 
-            // Animate the text shadow to create a subtle shine effect
             tl.to(h1Element, {
                 duration: 1,
                 backgroundPosition: "200% 0%",
-                textShadow: "0 0 8px rgba(255,255,255,0.6), 0 0 15px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.4)",
+                textShadow:
+                    "0 0 8px rgba(255,255,255,0.6), 0 0 15px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.4)",
                 ease: "power2.inOut",
             })
                 .to(h1Element, {
                     duration: 0.5,
-                    textShadow: "0 0 10px rgba(255,255,255,0.7), 0 0 15px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.5)",
+                    textShadow:
+                        "0 0 10px rgba(255,255,255,0.7), 0 0 15px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.5)",
                     ease: "power2.inOut",
                 })
                 .to(h1Element, {
@@ -58,11 +69,11 @@ const Hero = () => {
                     ease: "power2.out",
                 })
 
-            // Add hover effect with subtle shine (without scale)
             h1Element.addEventListener("mouseenter", () => {
                 gsap.to(h1Element, {
                     duration: 0.3,
-                    textShadow: "0 0 10px rgba(255,255,255,0.7), 0 0 15px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.3)",
+                    textShadow:
+                        "0 0 10px rgba(255,255,255,0.7), 0 0 15px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.3)",
                     ease: "power2.out",
                 })
             })
@@ -77,6 +88,8 @@ const Hero = () => {
         }
     }, { scope: containerRef })
 
+
+
     return (
         <>
             <section id="hero" className="stars" ref={containerRef}>
@@ -88,7 +101,7 @@ const Hero = () => {
                     <h1 ref={h1Ref} className="shine-text">
                         UI UX {isMobile ? <br/> : ""} Designer
                     </h1>
-                    <p className="borderr">
+                    <p>
                         <span className="text-violet-primary">Devoted</span> to turning ideas into reality through clean, intuitive
                         design.<br/>
                         Crafting seamless experiences that connect people with <br/> products in meaningful ways.

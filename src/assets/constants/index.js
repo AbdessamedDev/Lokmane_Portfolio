@@ -41,6 +41,7 @@ export const projectsData = [
         projectTitle: "Dirasati: School Platform",
         projectDescription: "Dirasati is a school management web app with dashboards for teachers and parents.",
         tags: ["Figma", "UI Design", "UX Design"],
+        link: "https://www.youtube.com/"
     },
     {
         id: 2,
@@ -48,6 +49,7 @@ export const projectsData = [
         projectTitle: "Dirasati: School Platform",
         projectDescription: "Dirasati is a school management web app with dashboards for teachers and parents.",
         tags: ["Figma", "UI Design", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 3,
@@ -55,6 +57,7 @@ export const projectsData = [
         projectTitle: "Dirasati: School Platform",
         projectDescription: "Dirasati is a school management web app with dashboards for teachers and parents.",
         tags: ["Figma", "UI Design", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 4,
@@ -62,6 +65,7 @@ export const projectsData = [
         projectTitle: "E-learning Platform",
         projectDescription: "Modern e-learning solution with interactive features for students and educators.",
         tags: ["React", "UI Design", "Frontend"],
+        link: "www.google.com"
     },
     {
         id: 5,
@@ -69,6 +73,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 6,
@@ -76,6 +81,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Dirasati is a school management web app \n" + "with dashboards for teachers and parents..",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 7,
@@ -83,6 +89,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 8,
@@ -90,6 +97,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 9,
@@ -97,6 +105,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 10,
@@ -104,6 +113,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 11,
@@ -111,6 +121,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 12,
@@ -118,6 +129,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 13,
@@ -125,6 +137,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 14,
@@ -132,6 +145,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 15,
@@ -139,6 +153,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 16,
@@ -146,6 +161,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 17,
@@ -153,6 +169,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 18,
@@ -160,6 +177,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 19,
@@ -167,6 +185,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
     {
         id: 20,
@@ -174,6 +193,7 @@ export const projectsData = [
         projectTitle: "Healthcare System",
         projectDescription: "Comprehensive healthcare management system for medical professionals.",
         tags: ["Dashboard", "Healthcare", "UX Design"],
+        link: "www.google.com"
     },
 ]
 
@@ -405,3 +425,9 @@ export const testimonials = [
             "It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! It was and amazing experience to work with him and building a powerful websites with a great design and best performance , also learning progress was very nice , see myself grow in skill and find the best parterns to work with , so it was an unforgettable journey !!! ",
     },
 ]
+
+export const socialLinks = {
+        linkedIn: "https://www.youtube.com/",
+        dribbble: "your dribbble link",
+        behance: "your behance link"
+}

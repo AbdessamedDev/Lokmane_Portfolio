@@ -1,22 +1,28 @@
 "use client"
-
 import { useRef, useState } from "react"
 import { useMediaQuery } from "react-responsive"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger" // Import ScrollTrigger
 import html2pdf from "html2pdf.js"
 import PurpleButton from "./buttons/PurpleButton"
+import astronautMobile from "/images/about/Astro_Mobile.png"
+import astronautDesktop from "/images/about/Astro.png"
+import { useSectionTitleAnimation } from "../hooks/useSectionTitleAnimation.jsx"
 
-import astronautMobile from "/images/about/Astro_Mobile.png";
-import astronautDesktop from "/images/about/Astro.png";
+// Register ScrollTrigger plugin once
+gsap.registerPlugin(ScrollTrigger)
 
 const Biography = () => {
     const astroRef = useRef(null)
+    const titleRef = useSectionTitleAnimation()
     const sectionRef = useRef(null)
     const resumeRef = useRef(null)
+    const purpleButtonRef = useRef(null) // Ref for the PurpleButton
     const [imageLoaded, setImageLoaded] = useState(false)
     const isMobile = useMediaQuery({ maxWidth: 767 })
 
+    // Existing GSAP for astronaut floating animation
     useGSAP(
         () => {
             if (!astroRef.current || !sectionRef.current || !imageLoaded) return
@@ -30,10 +36,8 @@ const Biography = () => {
                 const container = astroRef.current.parentElement
                 const containerBounds = container.getBoundingClientRect()
                 const imageBounds = astroRef.current.getBoundingClientRect()
-
                 const maxX = containerBounds.width - imageBounds.width - 40
                 const maxY = containerBounds.height - imageBounds.height - 40
-
                 const initialX = Math.min(maxX * 0.7, maxX)
                 const initialY = Math.max(20, maxY * 0.3)
 
@@ -48,7 +52,6 @@ const Biography = () => {
                 const floatAnimation = () => {
                     const currentX = gsap.getProperty(astroRef.current, "x")
                     const currentY = gsap.getProperty(astroRef.current, "y")
-
                     const safeMargin = 60
                     const minX = safeMargin
                     const maxSafeX = containerBounds.width - imageBounds.width - safeMargin
@@ -81,17 +84,71 @@ const Biography = () => {
                         onComplete: floatAnimation,
                     })
                 }
-
                 gsap.delayedCall(0.5, floatAnimation)
             }
         },
         { dependencies: [imageLoaded, isMobile], scope: sectionRef },
     )
 
-    const downloadResume = () => {
-        if (!resumeRef.current) return;
+    // New GSAP for Biography section entry animation and image scroll effect
+    useGSAP(
+        () => {
+            if (!sectionRef.current || !resumeRef.current || !purpleButtonRef.current || !astroRef.current) return
 
-        const container = document.createElement("div");
+            // Timeline for paragraph and button animation
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top center", // When the top of the section hits the center of the viewport
+                    once: true, // Play animation only once
+                },
+            })
+
+            // Initial state for paragraph lines and button
+            gsap.set(resumeRef.current.children, { opacity: 0, y: 20 })
+            gsap.set(purpleButtonRef.current, { opacity: 0, y: 20 })
+
+            // Animate paragraph lines (each span)
+            tl.to(resumeRef.current.children, {
+                opacity: 1,
+                y: 0,
+                stagger: 0.2, // Stagger the animation for each line
+                duration: 0.8,
+                ease: "power2.out",
+            })
+
+            // Animate purple button after paragraph lines
+            tl.to(
+                purpleButtonRef.current,
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    delay: 0.3, // Small delay after lines finish
+                },
+                "<0.5",
+            ) // Start 0.5 seconds before the end of the previous animation (staggered lines)
+
+            // Astronaut image scroll effect
+            gsap.to(astroRef.current, {
+                scale: 0.7, // Image becomes smaller
+                ease: "none",
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top top", // When the top of the section hits the top of the viewport
+                    end: "bottom center", // When the bottom of the section hits the center of the viewport
+                    scrub: true, // Link animation to scroll position
+                    // markers: true, // Uncomment for debugging ScrollTrigger
+                },
+            })
+        },
+        { scope: sectionRef, dependencies: [imageLoaded] },
+    ) // Add imageLoaded as dependency for scroll effect
+
+    const downloadResume = () => {
+        if (!resumeRef.current) return
+        const container = document.createElement("div")
         container.style.cssText = `
         padding: 40px;
         font-family: 'Arial', sans-serif;
@@ -101,26 +158,24 @@ const Biography = () => {
         max-width: 800px;
         margin: 0 auto;
         background: white;
-    `;
-
+    `
         // Title
-        const title = document.createElement("h1");
-        title.textContent = "About Lokmane BENHAMMADI";
+        const title = document.createElement("h1")
+        title.textContent = "About Lokmane BENHAMMADI"
         title.style.cssText = `
         font-size: 28px;
         font-weight: bold;
-        margin-bottom: 10px;  // Reduced margin to accommodate subtitle
+        margin-bottom: 10px;
         text-align: center;
         color: #633EB7;
         border-bottom: 3px solid #633EB7;
         padding-bottom: 15px;
         letter-spacing: 1px;
-    `;
-        container.appendChild(title);
-
+    `
+        container.appendChild(title)
         // Subtitle (added this section)
-        const subtitle = document.createElement("h2");
-        subtitle.textContent = "UI/UX Designer & Creative Professional";
+        const subtitle = document.createElement("h2")
+        subtitle.textContent = "UI/UX Designer & Creative Professional"
         subtitle.style.cssText = `
         font-size: 18px;
         font-weight: normal;
@@ -128,21 +183,19 @@ const Biography = () => {
         text-align: center;
         color: #666;
         font-style: italic;
-    `;
-        container.appendChild(subtitle);
-
+    `
+        container.appendChild(subtitle)
         // Text container
-        const textContainer = document.createElement("div");
+        const textContainer = document.createElement("div")
         textContainer.style.cssText = `
         width: 100%;
         overflow: visible;
         word-wrap: break-word;
         overflow-wrap: break-word;
         hyphens: auto;
-    `;
-
+    `
         // Content
-        const content = resumeRef.current.cloneNode(true);
+        const content = resumeRef.current.cloneNode(true)
         content.style.cssText = `
         font-size: 16px;
         line-height: 1.8;
@@ -152,23 +205,20 @@ const Biography = () => {
         word-break: normal;
         overflow-wrap: break-word;
         white-space: normal;
-    `;
-
+    `
         // Rest of the PDF generation code remains the same...
-        const highlights = content.querySelectorAll(".text-violet-primary");
+        const highlights = content.querySelectorAll(".text-violet-primary")
         highlights.forEach((highlight) => {
             highlight.style.cssText = `
             color: #633EB7;
             font-weight: bold;
             display: inline;
-        `;
-        });
-
-        textContainer.appendChild(content);
-        container.appendChild(textContainer);
-
+        `
+        })
+        textContainer.appendChild(content)
+        container.appendChild(textContainer)
         // Footer and PDF options remain unchanged...
-        const footer = document.createElement("div");
+        const footer = document.createElement("div")
         footer.style.cssText = `
         margin-top: 40px;
         padding-top: 20px;
@@ -176,13 +226,12 @@ const Biography = () => {
         text-align: center;
         font-size: 12px;
         color: #888;
-    `;
+    `
         footer.innerHTML = `
         <p>Generated on ${new Date().toLocaleDateString()}</p>
         <p>Contact: Higher School of Computer Science, Sidi Bel Abbes</p>
-    `;
-        container.appendChild(footer);
-
+    `
+        container.appendChild(footer)
         const opt = {
             margin: [20, 20, 20, 20],
             filename: "Lokmane_BENHAMMADI_Resume.pdf",
@@ -196,52 +245,62 @@ const Biography = () => {
                 scrollX: 0,
                 scrollY: 0,
                 windowWidth: document.documentElement.scrollWidth,
-                windowHeight: document.documentElement.scrollHeight
+                windowHeight: document.documentElement.scrollHeight,
             },
             jsPDF: {
                 unit: "mm",
                 format: "a4",
                 orientation: "portrait",
-                hotfixes: ["px_scaling"]
-            }
-        };
-
+                hotfixes: ["px_scaling"],
+            },
+        }
         html2pdf()
             .set(opt)
             .from(container)
             .save()
             .catch((err) => {
-                console.error("PDF generation error:", err);
-                alert("Error generating PDF. Please try again.");
-            });
-    };
+                console.error("PDF generation error:", err)
+                alert("Error generating PDF. Please try again.")
+            })
+    }
     const handleImageLoad = () => {
         setImageLoaded(true)
     }
 
     return (
         <section id="about" className="stars" ref={sectionRef}>
-            <h2>
-                Who<span className="font-serif">'</span>s behind the designs and prototypes?
-            </h2>
+            <div className="w-full flex justify-center -mb-16 md:-mb-80">
+                <h2 ref={titleRef} className="section-title inline-block whitespace-normal overflow-visible">
+                    Who<span className="font-serif">'</span>s behind the designs and prototypes?
+                </h2>
+            </div>
             <div className="flex items-center md:flex-row flex-col-reverse md:gap-[152px] gap-11">
                 <div className="text-center md:text-left">
                     <p
                         ref={resumeRef}
                         className="w-[358px] md:w-[967px] font-fsp-bold text-[10px] md:text-2xl font-normal leading-[1.8] mb-4 md:mb-8"
                     >
-                        I<span className="font-serif">'</span>m a passionate UI UX designer with a sharp eye for detail and a love
-                        for intuitive, user centred design.
-                        <br />
-                        Currently studying at the Higher School of Computer Science in Sidi Bel Abbes, I blend creativity with clear
-                        thinking to turn ideas into clean, functional products.
-                        <br />I<span className="font-serif">'</span>ve worked on projects like{" "}
-                        <span className="text-violet-primary">Dirasati</span> and{" "}
-                        <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
-                        understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
-                        design all focused on creating experiences that truly work for users.
+            <span className="block">
+              I<span className="font-serif">'</span>m a passionate UI UX designer with a sharp eye for detail and a love
+              for intuitive, user centred design.
+            </span>
+                        <span className="block">
+              Currently studying at the Higher School of Computer Science in Sidi Bel Abbes, I blend creativity with
+              clear thinking to turn ideas into clean, functional products.
+            </span>
+                        <span className="block">
+              I<span className="font-serif">'</span>ve worked on projects like{" "}
+                            <span className="text-violet-primary">Dirasati</span> and{" "}
+                            <span className="text-violet-primary">Dorouscom</span>, collaborating with developers and building a solid
+              understanding of real world implementation. My work spans research, wireframing, prototyping, and visual
+              design all focused on creating experiences that truly work for users.
+            </span>
                     </p>
-                    <PurpleButton onClick={downloadResume} className="btn-purple text-xs px-[10px] py-[6px] rounded-md md:text-xl md:py-4 md:px-7 md:rounded-2xl">
+                    <PurpleButton
+                        onClick={downloadResume}
+                        className="btn-purple text-xs px-[10px] py-[6px] rounded-md md:text-xl md:py-4 md:px-7 md:rounded-2xl"
+                        ref={purpleButtonRef} // Attach ref to the button
+                    >
                         Download resume
                     </PurpleButton>
                 </div>

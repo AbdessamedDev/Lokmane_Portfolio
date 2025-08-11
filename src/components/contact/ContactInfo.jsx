@@ -41,7 +41,7 @@ const ContactInfo = ({ infoIcon, infoTitle, infoContent }) => {
             <div className="text-violet-primary size-4 md:size-6 contact-icon mr-3">{infoIcon}</div>
             <div>
                 <h3 className="font-fsp-bold font-normal text-[#464B60] text-[8px] md:text-xs md:mb-2">{infoTitle}</h3>
-                <span className="block text-[10px] md:text-sm text-white font-fsp-bold font-normal">{infoContent}</span>
+                <span className="block text-[10px] md:text-sm text-white font-poppins-medium font-normal">{infoContent}</span>
             </div>
         </div>
     )

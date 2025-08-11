@@ -1,125 +1,63 @@
 /* Floating animations for each planet */
-.planet-0 {
-    animation: float-0 3s ease-in-out infinite;
-    animation-delay: 0s;
-}
-.planet-1 {
-    animation: float-1 4s ease-in-out infinite;
-    animation-delay: 0.5s;
-}
-.planet-2 {
-    animation: float-2 5s ease-in-out infinite;
-    animation-delay: 1s;
-}
-.planet-3 {
-    animation: float-3 3s ease-in-out infinite;
-    animation-delay: 1.5s;
-}
-.planet-4 {
-    animation: float-4 4s ease-in-out infinite;
-    animation-delay: 2s;
-}
-.planet-5 {
-    animation: float-5 5s ease-in-out infinite;
-    animation-delay: 2.5s;
-}
-.planet-6 {
-    animation: float-6 3s ease-in-out infinite;
-    animation-delay: 3s;
-}
-.planet-7 {
-    animation: float-7 4s ease-in-out infinite;
-    animation-delay: 3.5s;
-}
+.floating-wrapper.planet-0 { animation: float-0 3s ease-in-out infinite; animation-delay: 0s; }
+.floating-wrapper.planet-1 { animation: float-1 4s ease-in-out infinite; animation-delay: 0.5s; }
+.floating-wrapper.planet-2 { animation: float-2 5s ease-in-out infinite; animation-delay: 1s; }
+.floating-wrapper.planet-3 { animation: float-3 3s ease-in-out infinite; animation-delay: 1.5s; }
+.floating-wrapper.planet-4 { animation: float-4 4s ease-in-out infinite; animation-delay: 2s; }
+.floating-wrapper.planet-5 { animation: float-5 5s ease-in-out infinite; animation-delay: 2.5s; }
+.floating-wrapper.planet-6 { animation: float-6 3s ease-in-out infinite; animation-delay: 3s; }
+.floating-wrapper.planet-7 { animation: float-7 4s ease-in-out infinite; animation-delay: 3.5s; }
+
+/* Keyframes */
 @keyframes float-0 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
 @keyframes float-1 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-25px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
 }
 @keyframes float-2 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
 @keyframes float-3 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-25px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
 }
 @keyframes float-4 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
 @keyframes float-5 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-25px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
 }
 @keyframes float-6 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
 @keyframes float-7 {
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-25px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
 }
 
+/* Image hover effects */
 .planet-image {
     filter: brightness(1);
     transition: filter 0.3s ease;
 }
-
 .planet-image.planet-hover {
-    filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+    filter: brightness(1.2); /* Removed drop-shadow */
 }
 
+/* Text hover effects */
 .planet-text {
     color: #cccccc;
     text-shadow: none;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 .planet-text.text-hover {
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Removed text-shadow */
 }

@@ -3,8 +3,11 @@ import { useState, useEffect } from "react"
 import { skillsInfos, otherSkills } from "../../assets/constants/index.js"
 import SkillPlanet from "./SkillPlanet.jsx"
 import SkillProgress from "./SkillProgress.jsx"
+import {useSectionTitleAnimation} from "../../hooks/useSectionTitleAnimation.jsx";
+import "./skill_planet.css"
 
 const SkillsSection = () => {
+    const titleRef = useSectionTitleAnimation()
     // Pagination state
     const [currentPage, setCurrentPage] = useState(0)
     const [buttonText, setButtonText] = useState("See more")
@@ -17,10 +20,8 @@ const SkillsSection = () => {
             setIsMobile(mobile)
             setResponsiveSkillsPerPage(mobile ? 2 : 6)
         }
-
         // Set initial value
         handleResize()
-
         window.addEventListener("resize", handleResize)
         return () => window.removeEventListener("resize", handleResize)
     }, [])
@@ -55,7 +56,7 @@ const SkillsSection = () => {
     return (
         <section id="skills" className="stars">
             {/* Main Skills Planets Section */}
-            <h1 className="section-title">What skills do I bring to the table?</h1>
+            <h1 className="section-title" ref={titleRef}>What skills do I bring to the table?</h1>
             <div
                 className={`planets-container ${
                     isMobile ? "grid grid-cols-2 gap-x-4 gap-y-8 justify-items-center items-center" : ""
@@ -83,13 +84,11 @@ const SkillsSection = () => {
                     />
                 ))}
             </div>
-            {/* Other Skills Section with Pagination */}
-            <div className="other-skills-container borderr w-full max-w-full mx-auto mt-8 md:mt-[5vw] px-4 md:px-0">
+
+            <div className="other-skills-container w-full max-w-full mx-auto mt-8 md:mt-[5vw] px-4 md:px-0">
                 <h1 className="other-skills-title">Other Skills</h1>
                 <div
-                    className="other-skills mx-auto
-                                grid grid-cols-1 gap-y-4 w-full max-w-[300px]
-                                md:grid-cols-3 md:gap-[120px] md:w-[1680px] md:max-w-none"
+                    className="other-skills mx-auto                                grid grid-cols-1 gap-y-4 w-full max-w-[300px]                                md:grid-cols-3 md:gap-[120px] md:w-[1680px] md:max-w-none"
                 >
                     {currentSkills.map((skill, index) => (
                         <SkillProgress
@@ -110,25 +109,7 @@ const SkillsSection = () => {
                     </button>
                 </div>
             </div>
-            {/* Global floating animations */}
-            <style jsx global>{`
-                ${[...Array(otherSkills.length)]
-                        .map((_, index) => {
-                            const animationDuration = 3 + (index % 3)
-                            const floatDistance = 15 + (index % 2) * 10
-                            return `
-                        @keyframes float-${index} {
-                            0%, 100% {
-                                transform: translateY(0px);
-                            }
-                            50% {
-                                transform: translateY(-${floatDistance}px);
-                            }
-                        }
-                    `
-                        })
-                        .join("")}
-            `}</style>
+            {/* Removed Global floating animations as they are now handled by BubbleEffect */}
         </section>
     )
 }

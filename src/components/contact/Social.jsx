@@ -61,7 +61,7 @@ const Social = ({ socialIcon }) => {
           ref={containerRef}
           className="size-8 mr-5 rounded-full bg-blue-night border border-violet-secondary flex items-center justify-center cursor-pointer transition-all duration-300 md:w-12 md:h-12 md:mr-4"
       >
-        <div ref={iconRef} className="flex items-center justify-center size-3 md:size-4">
+        <div ref={iconRef} className="flex items-center justify-center size-3 md:size-5">
           {socialIcon}
         </div>
       </div>
