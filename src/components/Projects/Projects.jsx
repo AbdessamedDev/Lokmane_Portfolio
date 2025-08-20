@@ -142,7 +142,7 @@ const Projects = () => {
                 ref={carouselInnerRef}
                 style={{ height: "514px" }} // Corrected 'Height' to 'height'
             >
-              {projectsData.map(({ id, projectImg, projectTitle, projectDescription, tags, link }) => (
+              {projectsData.map(({ id, projectImg, projectTitle, projectDescription, tags, link }, index) => (
                   <ProjectCard
                       key={id}
                       projectImg={projectImg}
@@ -150,6 +150,7 @@ const Projects = () => {
                       projectDescription={projectDescription}
                       tags={tags}
                       link={link}
+                      index={index}
                   />
               ))}
             </div>

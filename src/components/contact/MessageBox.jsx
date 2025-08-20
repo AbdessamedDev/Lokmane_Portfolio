@@ -2,16 +2,14 @@
 import { useState, useRef } from "react"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
-import Toast from "./Toast.jsx"
 
-const MessageBox = ({isMobile}) => {
+const MessageBox = ({isMobile, setToast}) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         message: "",
     })
     const [result, setResult] = useState("")
-    const [toast, setToast] = useState({ show: false, type: "", message: "" })
     const formRef = useRef(null)
     const nameRef = useRef(null)
     const emailRef = useRef(null)
@@ -154,18 +152,12 @@ const MessageBox = ({isMobile}) => {
                     <button
                         type="submit"
                         disabled={result === "Sending..."}
-                        className="send-button w-full flex-center bg-violet-primary font-fsp-stencil font-medium text-[10px] px-[100px] py-[6px] rounded-[8px] transition-all duration-300 hover:bg-violet-600 hover:shadow-lg hover:shadow-violet-primary/30 disabled:opacity-70 md:text-base md:px-7 md:py-4 md:rounded-2xl"
+                        className="send-button w-full flex-center bg-violet-primary font-fsp-stencil font-medium text-[10px] px-[100px] py-[6px] rounded-[8px] transition-all duration-300 hover:bg-violet-600 hover:shadow-lg hover:shadow-violet-primary/30 disabled:opacity-70 md:text-base md:px-7 md:py-4 md:rounded-2xl cursor-pointer"
                     >
                         {result || "Send Message"}
                     </button>
                 </form>
             </div>
-            <Toast
-                show={toast.show}
-                type={toast.type}
-                message={toast.message}
-                onClose={() => setToast({ show: false, type: "", message: "" })}
-            />
         </>
     )
 }

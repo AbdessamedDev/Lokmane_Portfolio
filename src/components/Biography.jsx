@@ -3,11 +3,11 @@ import { useRef, useState } from "react"
 import { useMediaQuery } from "react-responsive"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger" // Import ScrollTrigger
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import html2pdf from "html2pdf.js"
 import PurpleButton from "./buttons/PurpleButton"
 import astronautMobile from "/images/about/Astro_Mobile.png"
-import astronautDesktop from "/images/about/Astro.png"
+import astronautDesktop from "/images/about/Astro.webp"
 import { useSectionTitleAnimation } from "../hooks/useSectionTitleAnimation.jsx"
 
 // Register ScrollTrigger plugin once
@@ -310,7 +310,7 @@ const Biography = () => {
                         src={isMobile ? astronautMobile : astronautDesktop}
                         alt="Floating astronaut"
                         onLoad={handleImageLoad}
-                        className="w-[168px] h-[199px] md:w-[660px] md:h-[660px]"
+                        className="w-[168px] md:w-[660px] h-auto object-contain"
                         style={{ opacity: 0 }}
                     />
                 </div>

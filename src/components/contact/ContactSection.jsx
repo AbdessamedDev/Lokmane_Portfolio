@@ -1,5 +1,5 @@
 "use client"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { SplitText } from "gsap/SplitText"
@@ -15,12 +15,15 @@ import MessageBox from "./MessageBox.jsx"
 import { useMediaQuery } from "react-responsive"
 import { useSectionTitleAnimation } from "../../hooks/useSectionTitleAnimation"
 import { socialLinks } from "../../assets/constants"
+import Toast from "./Toast.jsx"
+
 
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
 const ContactSection = () => {
     const sectionRef = useRef(null)
+    const [toast, setToast] = useState({ show: false, type: "", message: "" })
     const titleRef = useSectionTitleAnimation()
     const paragraphRef = useRef(null)
     const astronautRef = useRef(null)
@@ -40,10 +43,16 @@ const ContactSection = () => {
         const astronaut = astronautRef.current
 
         // Split text elements
-        const paragraphSplit = new SplitText(paragraph, {
+        const paragraphSplit = new SplitText(paragraphRef.current, {
             type: "lines",
             linesClass: "line-child"
-        })
+        });
+
+        // Cleanup ARIA
+        paragraphSplit.lines.forEach(line => {
+            line.removeAttribute("aria-label");
+            line.removeAttribute("role");
+        });
 
         // Set initial states
         gsap.set([getInTouchTitleRef.current, followMeTitleRef.current], {
@@ -189,13 +198,13 @@ const ContactSection = () => {
                         Follow me
                     </h3>
                     <div ref={socialRef} className="flex justify-center md:justify-start">
-                        <a href={linkedIn} target="_blank">
+                        <a href={linkedIn} target="_blank" aria-label="linkedIn">
                             <Social socialIcon={<FaLinkedinIn className="text-violet-primary size-5" />}/>
                         </a>
-                        <a href={behance} target="_blank">
+                        <a href={behance} target="_blank" aria-label="behance">
                             <Social socialIcon={<FaBehance className="text-violet-primary size-5" />}/>
                         </a>
-                        <a href={dribbble} target="_blank">
+                        <a href={dribbble} target="_blank" aria-label="dribbbley">
                             <Social socialIcon={<FaDribbble className="text-violet-primary size-5" />}/>
                         </a>
                     </div>
@@ -205,7 +214,7 @@ const ContactSection = () => {
                 <div className="w-[132px] h-[242px] order-1 md:order-2 md:w-[241px] md:h-auto md:mb-0">
                     <img
                         ref={astronautRef}
-                        src="/images/contact/Astro_2.png"
+                        src="/images/contact/Astro_2.webp"
                         alt="Astronaut 2"
                         className="w-full h-full object-contain md:object-cover"
                     />
@@ -213,9 +222,15 @@ const ContactSection = () => {
 
                 {/* Block 3: Message Box */}
                 <div className="md:mb-0 order-2 md:order-3" ref={messageBoxRef}>
-                    <MessageBox isMobile={isMobile}/>
+                    <MessageBox isMobile={isMobile} setToast={setToast} />
                 </div>
             </div>
+            <Toast
+                show={toast.show}
+                type={toast.type}
+                message={toast.message}
+                onClose={() => setToast({ show: false, type: "", message: "" })}
+            />
         </section>
     )
 }

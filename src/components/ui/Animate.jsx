@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
-import animationData from "../assets/animations/animation.json"; // ✅ direct import
+import animationData from "../../assets/animations/animation.json"; // ✅ direct import
 import { useMediaQuery } from "react-responsive";
 
 export default function Animate() {

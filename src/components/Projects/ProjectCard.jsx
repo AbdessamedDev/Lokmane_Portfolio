@@ -6,7 +6,8 @@ const ProjectCard = ({
                          projectTitle = "Dirasati: School Platform",
                          projectDescription = "Dirasati is a school management web app with dashboards for teachers and parents.",
                          tags = ["Figma", "UI Design", "UX Design"],
-                         link = "google.com"
+                         link = "google.com",
+                         index = 0,
                      }) => {
     return (
         <div className="project-card-image">
@@ -23,9 +24,16 @@ const ProjectCard = ({
                 </div>
                 <h3 className="project-card-title">{projectTitle}</h3>
                 <p className="project-card-desc">{projectDescription}</p>
-                <a href={link} target="_blank">
-                    <PurpleButton className="btn-purple py-1 px-2 text-[8px] rounded-sm md:py-2 md:px-4 md:text-sm md:rounded-lg">Learn More</PurpleButton>
+                <a
+                    href={link}
+                    target="_blank"
+                    aria-label={`Learn more about ${projectTitle}`}
+                >
+                    <PurpleButton>
+                        Learn More about {projectTitle}
+                    </PurpleButton>
                 </a>
+
             </div>
         </div>
     )

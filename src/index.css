@@ -1,55 +1,205 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.145 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.145 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: oklch(0.269 0 0);
+    --input: oklch(0.269 0 0);
+    --ring: oklch(0.439 0 0);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(0.269 0 0);
+    --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
 @font-face {
     font-family: "Universo Stencil Demo";
-    src: url("/fonts/FSP DEMO - Universo Stencil.ttf") format("truetype");
+    src: url("/fonts/FSP DEMO - Universo Stencil.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
 @font-face {
     font-family: "Universo Bold Demo";
-    src: url("/fonts/FSP DEMO - Universo Bold.ttf") format("truetype");
+    src: url("/fonts/FSP DEMO - Universo Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
+
 @font-face {
     font-family: "Universo Black Demo";
-    src: url("/fonts/FSP DEMO - Universo Black.ttf") format("truetype");
+    src: url("/fonts/FSP DEMO - Universo Black.woff2") format("woff2");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
 @font-face {
     font-family: "UniversoDemoRegular";
-    src: url("/fonts/Fontspring-DEMO-universo-regular.otf") format("opentype");
+    src: url("/fonts/Fontspring-DEMO-universo-regular.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
 @font-face {
     font-family: "UniversoDemoLight";
-    src: url("/fonts/Fontspring-DEMO-universo-light.otf") format("opentype");
+    src: url("/fonts/Fontspring-DEMO-universo-light.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
 @font-face {
     font-family: "UniversoDemoThin";
-    src: url("/fonts/Fontspring-DEMO-universo-thin.ttf") format("truetype");
+    src: url("/fonts/Fontspring-DEMO-universo-thin.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
 
 /* Poppins */
 @font-face {
     font-family: "Poppins";
-    src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+    src: url("/fonts/Poppins-Medium.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
 
 /* Montserrat Arabic */
 @font-face {
     font-family: "Montserrat Arabic";
-    src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
+    src: url("/fonts/Montserrat-Medium.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
+    size-adjust: 100%;
 }
 
 @theme {
-    --font-fsp-stencil: "Universo Stencil Demo", sans-serif;
-    --font-fsp-bold: "Universo Bold Demo", sans-serif;
-    --font-fsp-black: "Universo Black Demo", sans-serif;
-    --font-fsp-regular: "UniversoDemoRegular";
-    --font-fsp-light: "UniversoDemoLight";
-    --font-fsp-thin: "UniversoDemoThin";
-    --font-poppins-medium: "Poppins";
-    --font-montserrat: "Montserrat Arabic", sans-serif;
+    --font-fsp-stencil: "Universo Stencil Demo", Arial, sans-serif;
+    --font-fsp-bold: "Universo Bold Demo", Arial, sans-serif;
+    --font-fsp-black: "Universo Black Demo", Arial, sans-serif;
+    --font-fsp-regular: "UniversoDemoRegular", Arial, sans-serif;
+    --font-fsp-light: "UniversoDemoLight", Arial, sans-serif;
+    --font-fsp-thin: "UniversoDemoThin", Arial, sans-serif;
+    --font-poppins-medium: "Poppins", Arial, sans-serif;
+    --font-montserrat: "Montserrat Arabic", Arial, sans-serif;
     --color-violet-primary: #633eb7;
     --color-violet-secondary: #392760;
     --color-white-secondary: #fefefe;
@@ -58,7 +208,8 @@
     --color-gray-input-border: #e0e0e033;
 }
 
-html,body {
+html,
+body {
     width: 100%;
     background-color: #05080f;
     color: white;
@@ -66,6 +217,7 @@ html,body {
     overflow-x: hidden;
 }
 
+/* Converting @utility directives to regular CSS classes to fix parsing error */
 @utility flex-center {
     @apply flex justify-center items-center;
 }
@@ -82,17 +234,18 @@ html,body {
     @apply border border-amber-950;
 }
 
-@utility text-shadow-white {
-    @apply text-shadow-[0_0_10px_#fff,_0_0_20px_#fff,_0_0_30px_#fff] text-white font-bold brightness-110 transition-all duration-300;
+.text-shadow-white {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+    @apply text-white font-bold brightness-110 transition-all duration-300;
 }
 
-@utility shine-text {
+.shine-text {
     @apply relative text-white transition-all duration-300;
 }
 
 /* Section Title Utility Class */
-@utility section-title {
-    @apply font-fsp-stencil font-medium text-[22px] md:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
+.section-title {
+    @apply font-fsp-stencil font-medium text-xl md:text-5xl text-white w-fit mx-auto text-center mb-12 md:mb-[126px];
 }
 
 .split-char {
@@ -101,7 +254,7 @@ html,body {
 }
 
 /* Button Components Utilities */
-@utility btn-purple {
+.btn-purple {
     @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-violet-primary text-white;
 }
 
@@ -115,7 +268,7 @@ html,body {
     @apply opacity-50 cursor-not-allowed;
 }
 
-@utility btn-white {
+.btn-white {
     @apply w-fit font-fsp-stencil font-medium text-center cursor-pointer transition-all duration-300 bg-transparent border-white text-white;
 }
 
@@ -139,6 +292,7 @@ html,body {
             @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
         }
         a {
+            /* Fixed spacing between utility classes */
             @apply cursor-pointer text-nowrap md:text-xl md:font-medium text-[2.57vw] font-fsp-stencil transition-all duration-300;
         }
         a.nav-link {
@@ -174,7 +328,7 @@ html,body {
         }
     }
     .stars {
-        @apply inset-0 size-full bg-[url("/images/global/Stars.svg")];
+        @apply inset-0 size-full bg-[url("/images/global/Stars.webp")];
     }
     #hero {
         @apply relative z-10 w-full min-h-dvh;
@@ -184,7 +338,7 @@ html,body {
                 @apply font-fsp-bold text-sm md:text-[32px] font-normal;
             }
             h1 {
-                @apply font-fsp-stencil font-medium text-5xl leading-[120%] md:text-[165px] mt-2 transition-all duration-100;
+                @apply font-fsp-stencil font-medium text-5xl leading-[120%] md:text-[160px] mt-2 transition-all duration-100;
             }
             h1:hover {
                 color: #fff;
@@ -213,28 +367,25 @@ html,body {
         }
     }
     #projects {
-        @apply relative z-10 w-full min-h-dvh py-20;
+        @apply relative z-10 w-full min-h-dvh py-[100px];
     }
-    /* Projects Section - Exact Match to Images */
+
     .projects-wrapper {
         @apply w-fit mx-auto px-5;
     }
-    /* New container for the carousel viewport */
+
     .projects-carousel-container {
         @apply overflow-hidden;
         /* Default for desktop */
         max-width: 1680px;
         /* 3 cards * 480px + 2 gaps * 120px */
         margin: 0 auto;
-        /* Center the carousel */
     }
     /* New flex container for all project cards */
     .projects-flex-row {
         @apply flex flex-nowrap;
         /* Ensure no wrapping */
         max-height: 600px;
-        /* Keep minHeight for layout stability */
-        /* GSAP will apply translateX to this element */
     }
     .project-card-image {
         @apply rounded-[20px] h-[234px] md:h-[514px] transition-all duration-300 overflow-hidden flex-shrink-0;
@@ -310,6 +461,11 @@ html,body {
     }
     #skills {
         @apply relative z-10 w-full min-h-dvh overflow-hidden;
+
+        h1 {
+            @apply md:mt-[12vh]
+        }
+
         /* These styles are now handled directly in JSX for better responsiveness */
         .other-skills-title {
             @apply text-center font-fsp-stencil font-medium text-xl md:text-[40px] mb-5 md:mb-20;
@@ -334,7 +490,8 @@ html,body {
 
 /* New styles for BubbleEffect and animations */
 @keyframes bubble-anim {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateY(0px);
     }
     50% {
@@ -344,4 +501,55 @@ html,body {
 
 .animate-pause {
     animation-play-state: paused !important;
+}
+
+/* Added performance optimizations for letter hover effects */
+.letter-span {
+    cursor: pointer;
+    will-change: text-shadow;
+    contain: layout style paint;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: text-shadow 0.2s ease-out;
+    display: inline-block;
+}
+
+.letter-span:hover {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4), 0
+    0 20px rgba(255, 255, 255, 0.3);
+    filter: brightness(1.1);
+}
+
+/* Enhanced entrance animation glow effect */
+.letter-glow-entrance {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 16px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 255, 255, 0.5);
+    filter: brightness(1.2);
+}
+
+/* Optimize animations for better performance and reduce LCP */
+.shine-text {
+    will-change: text-shadow;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    contain: layout style paint;
+}
+
+/* Reduce layout thrashing with GPU acceleration */
+#hero .content {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: layout style paint;
+}
+
+/* Optimize animations to reduce main thread work */
+@media (prefers-reduced-motion: reduce) {
+    .letter-span {
+        transition: none;
+    }
+
+    .shine-text {
+        transition: none;
+    }
 }

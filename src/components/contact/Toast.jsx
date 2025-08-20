@@ -73,10 +73,10 @@ const Toast = ({ show, type, message, onClose }) => {
     const progressColor = isSuccess ? "bg-green-500" : "bg-red-500"
 
     return (
-        <div className="fixed top-1/5 left-1/2 -translate-x-1/2 z-[999]">
+        <div className="fixed top-1/5 md:top-1/12 right-2 z-[999]">
             <div
                 ref={toastRef}
-                className={`${bgColor} ${borderColor} border backdrop-blur-sm rounded-lg p-4 w-[370px] shadow-2xl`}
+                className={`${bgColor} ${borderColor} border backdrop-blur-sm rounded-lg p-4 w-[360px] md:w-[500px] shadow-2xl`}
                 style={{
                     boxShadow: `0 0 30px ${isSuccess ? "rgba(34, 197, 94, 0.3)" : "rgba(239, 68, 68, 0.3)"}`,
                 }}
@@ -84,7 +84,7 @@ const Toast = ({ show, type, message, onClose }) => {
                 <div className="flex items-start gap-3">
                     <div className={`${iconColor} mt-0.5`}>{isSuccess ? <CheckCircle size={20} /> : <XCircle size={20} />}</div>
                     <div className="flex-1">
-                        <p className="text-white font-fsp-bold text-[12px] leading-relaxed">{message}</p>
+                        <p className="text-white font-serif text-xs md:text-xl leading-relaxed">{message}</p>
                     </div>
                     <button onClick={handleClose} className="text-gray-400 hover:text-white transition-colors duration-200 ml-2">
                         <X size={16} />

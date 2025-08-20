@@ -133,7 +133,7 @@ const TestimonialCard = ({ image, fullName, job, description, rating = 4 }) => {
                     </div>
                 )}
             </div>
-            <style jsx>{`
+            <style>{`
                 p::-webkit-scrollbar {
                     width: 4px;
                 }
