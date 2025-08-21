@@ -54,6 +54,8 @@ const ContactSection = () => {
             line.removeAttribute("role");
         });
 
+        paragraphRef.current.removeAttribute("aria-label");
+
         // Set initial states
         gsap.set([getInTouchTitleRef.current, followMeTitleRef.current], {
             opacity: 0,
@@ -163,7 +165,6 @@ const ContactSection = () => {
                 Ready to build something great together?
             </h2>
             <div className="contact-container flex flex-col gap-12 items-center md:w-[1680px] mx-auto md:flex-row md:gap-[168.5px]">
-                {/* Block 1: Get in touch div (Contact Info + Socials) */}
                 <div className="w-full h-auto p-0 order-3 md:order-1 md:w-[552px]">
                     <h3
                         ref={getInTouchTitleRef}

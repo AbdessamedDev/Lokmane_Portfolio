@@ -30,7 +30,7 @@ const ProjectCard = ({
                     aria-label={`Learn more about ${projectTitle}`}
                 >
                     <PurpleButton className="rounded-sm py-1 px-2 text-[8px] md:rounded-lg md:py-2 md:px-4 md:text-sm">
-                        Learn More
+                        Learn More <span className="sr-only">about: {projectTitle}</span>
                     </PurpleButton>
                 </a>
 
