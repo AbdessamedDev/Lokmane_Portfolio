@@ -130,7 +130,7 @@ const TestimonialsSection = () => {
         // Calculate which testimonial starts each section (20% chunks)
         const testimonialsPerSection = originalLength / 5
         const testimonialIndex = Math.floor(sectionIndex * testimonialsPerSection)
-        const targetIndex = originalLength + testimonialIndex
+        const targetIndex = originalLength + testimonialIndex + 1
 
         slider.scrollTo({
             left: targetIndex * cardWidthWithGap,
@@ -200,7 +200,7 @@ const TestimonialsSection = () => {
                         className={`
                             ${isMobile ? "w-4 h-4" : "w-6 h-6"}
                             rounded-full transition-all duration-300 ${
-                            currentDot === index ? "bg-violet-500 scale-125" : "bg-white hover:bg-white/70"
+                            currentDot === index ? "bg-violet-500 scale-125" : "bg-white hover:bg-white/70 cursor-pointer"
                         }`}
                         aria-label={`Go to section ${index + 1} of testimonials`}
                     />

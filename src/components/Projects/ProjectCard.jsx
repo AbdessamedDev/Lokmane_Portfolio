@@ -29,8 +29,8 @@ const ProjectCard = ({
                     target="_blank"
                     aria-label={`Learn more about ${projectTitle}`}
                 >
-                    <PurpleButton>
-                        Learn More about {projectTitle}
+                    <PurpleButton className="rounded-sm py-1 px-2 text-[8px] md:rounded-lg md:py-2 md:px-4 md:text-sm">
+                        Learn More
                     </PurpleButton>
                 </a>
 

@@ -148,10 +148,11 @@ const Biography = () => {
 
     const downloadResume = () => {
         if (!resumeRef.current) return
+
         const container = document.createElement("div")
         container.style.cssText = `
         padding: 40px;
-        font-family: 'Arial', sans-serif;
+        font-family: Arial, sans-serif;
         line-height: 1.6;
         color: #333;
         width: 100%;
@@ -159,6 +160,7 @@ const Biography = () => {
         margin: 0 auto;
         background: white;
     `
+
         // Title
         const title = document.createElement("h1")
         title.textContent = "About Lokmane BENHAMMADI"
@@ -173,7 +175,8 @@ const Biography = () => {
         letter-spacing: 1px;
     `
         container.appendChild(title)
-        // Subtitle (added this section)
+
+        // Subtitle
         const subtitle = document.createElement("h2")
         subtitle.textContent = "UI/UX Designer & Creative Professional"
         subtitle.style.cssText = `
@@ -185,16 +188,8 @@ const Biography = () => {
         font-style: italic;
     `
         container.appendChild(subtitle)
-        // Text container
-        const textContainer = document.createElement("div")
-        textContainer.style.cssText = `
-        width: 100%;
-        overflow: visible;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-    `
-        // Content
+
+        // Clone resume content
         const content = resumeRef.current.cloneNode(true)
         content.style.cssText = `
         font-size: 16px;
@@ -202,22 +197,20 @@ const Biography = () => {
         text-align: left;
         margin: 0 auto 20px;
         width: 100%;
-        word-break: normal;
-        overflow-wrap: break-word;
         white-space: normal;
+        word-break: break-word;
     `
-        // Rest of the PDF generation code remains the same...
-        const highlights = content.querySelectorAll(".text-violet-primary")
-        highlights.forEach((highlight) => {
-            highlight.style.cssText = `
+        // Fix highlighted text
+        content.querySelectorAll(".text-violet-primary").forEach(el => {
+            el.style.cssText = `
             color: #633EB7;
             font-weight: bold;
             display: inline;
         `
         })
-        textContainer.appendChild(content)
-        container.appendChild(textContainer)
-        // Footer and PDF options remain unchanged...
+        container.appendChild(content)
+
+        // Footer
         const footer = document.createElement("div")
         footer.style.cssText = `
         margin-top: 40px;
@@ -232,37 +225,37 @@ const Biography = () => {
         <p>Contact: Higher School of Computer Science, Sidi Bel Abbes</p>
     `
         container.appendChild(footer)
+
+        // ✅ PDF options (removed unsupported hotfixes)
         const opt = {
-            margin: [20, 20, 20, 20],
+            margin: 20,
             filename: "Lokmane_BENHAMMADI_Resume.pdf",
             image: { type: "jpeg", quality: 0.98 },
             html2canvas: {
                 scale: 2,
                 useCORS: true,
-                letterRendering: true,
                 backgroundColor: "#ffffff",
-                logging: true,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: document.documentElement.scrollWidth,
-                windowHeight: document.documentElement.scrollHeight,
             },
             jsPDF: {
                 unit: "mm",
                 format: "a4",
                 orientation: "portrait",
-                hotfixes: ["px_scaling"],
             },
         }
+
+        // ✅ Ensure async PDF generation works properly
         html2pdf()
             .set(opt)
             .from(container)
             .save()
-            .catch((err) => {
-                console.error("PDF generation error:", err)
-                alert("Error generating PDF. Please try again.")
+            .then(() => {
+                console.log("✅ PDF saved successfully")
+            })
+            .catch(err => {
+                console.error("❌ PDF generation failed:", err)
             })
     }
+
     const handleImageLoad = () => {
         setImageLoaded(true)
     }
